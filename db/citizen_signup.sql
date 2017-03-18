@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 18, 2017 at 10:13 PM
+-- Generation Time: Mar 18, 2017 at 11:57 PM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -27,14 +27,15 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `citizen_signup` (
-  `ID` int(5) NOT NULL,
-  `Username` varchar(20) CHARACTER SET utf8 NOT NULL,
-  `Email` int(20) NOT NULL,
-  `Password` text CHARACTER SET utf8 NOT NULL,
-  `ConfirmPassword` text CHARACTER SET utf8 NOT NULL,
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Username` varchar(20) NOT NULL,
+  `Email` varchar(20) NOT NULL,
+  `Password` varchar(8) NOT NULL,
+  `ConfirmPassword` varchar(8) NOT NULL,
   `Zipcode` int(6) NOT NULL,
-  `Contact` bigint(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Contact` int(10) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=MRG_MyISAM DEFAULT CHARSET=utf8;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
