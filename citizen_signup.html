@@ -1,6 +1,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <title>Citizen Signup</title>
 </head>
 <body>
@@ -9,14 +10,14 @@
 <table>
 <tr>
 <td>
-<form name="citizen_signup_form" method="POST" action="welcome.html" onsubmit="return(regvalidate())">
+<form name="citizen_signup_form">
 <table>
 <tr>
 <td> User Name:</td> <td><input type="text" name="uname"/>
 </td>
 </tr>
 <tr>
-<td>Email Address: </td> <td> <input type="text" name="uemail"/>
+<td>Email Address: </td> <td> <input type="email" name="uemail"/>
 </td>
 </tr>
 </tr>
@@ -26,7 +27,7 @@
 </tr>
 </tr>
 <tr>
-<td> Confirm Password: </td> <td> <input type="password" name="confpass"/> 
+<td> Confirm Password: </td> <td> <input type="password" name="confpass"/>
 </td>
 </tr>
 <tr>
@@ -51,65 +52,79 @@
 </tr>
 </table>
 </tr>
+
 <script type="Text/JavaScript">
-function regvalidate()
+$( "form" ).submit(function( event ) {
 
-{
-if(document.citizen_signup_form.uname.value=="")
-{
-document.getElementById('une').innerHTML = "Username cannot be empty!";
-citizen_signup_form.uname.focus();
-return(false);
-}
+	if(document.citizen_signup_form.uname.value=="")
+	{
+		document.getElementById('une').innerHTML = "Username cannot be empty!";
+		citizen_signup_form.uname.focus();
+		return(false);
+	}
 
-if(document.citizen_signup_form.uemail.value=="")
-{
-document.getElementById('une').innerHTML = "Email id required!";
-citizen_signup_form.uemail.focus();
-return(false);
-}
+	if(document.citizen_signup_form.uemail.value=="")
+	{
+		document.getElementById('une').innerHTML = "Email id required!";
+		citizen_signup_form.uemail.focus();
+		return(false);
+	}
 
-if(document.citizen_signup_form.pass.value=="")
-{
-document.getElementById('une').innerHTML = "Please type a password!";
-citizen_signup_form.pass.focus();
-return(false);
-}
-if((document.citizen_signup_form.pass.value) != (document.citizen_signup_form.confpass.value))
-{
-document.getElementById('une').innerHTML = "Passwords do not match!";
-citizen_signup_form.pass.value = "";
-citizen_signup_form.confpass.value = "";
-citizen_signup_form.pass.focus();
-return(false);
-}
-if((document.citizen_signup_form.zipcode.value) == "")
-{
-document.getElementById('une').innerHTML = "Zipcode required!";
-citizen_signup_form.zipcode.focus();
-return(false);
-}
-else if (document.citizen_signup_form.zipcode.value.length < 6)
-{
-document.getElementById('une').innerHTML = "Zipcode must be 6 digits!";
-citizen_signup_form.zipcode.focus();
-return(false);
-}
-if (document.citizen_signup_form.contact.value=="") {
-	document.getElementById('une').innerHTML = "Contact required!";
-	return(false);
-}
-else if(document.citizen_signup_form.contact.value.length < 10)
-{
-document.getElementById('une').innerHTML = "Contact should contain 10 digits!";
-citizen_signup_form.pass.focus();
-return(false);
-}
-else
-{
-return(true);
-}
-}
+	if(document.citizen_signup_form.pass.value=="")
+	{
+		document.getElementById('une').innerHTML = "Please type a password!";
+		citizen_signup_form.pass.focus();
+		return(false);
+	}
+	if((document.citizen_signup_form.pass.value) != (document.citizen_signup_form.confpass.value))
+	{
+		document.getElementById('une').innerHTML = "Passwords do not match!";
+		citizen_signup_form.pass.value = "";
+		citizen_signup_form.confpass.value = "";
+		citizen_signup_form.pass.focus();
+		return(false);
+	}
+	if((document.citizen_signup_form.zipcode.value) == "")
+	{
+		document.getElementById('une').innerHTML = "Zipcode required!";
+		citizen_signup_form.zipcode.focus();
+		return(false);
+	}
+	else if (document.citizen_signup_form.zipcode.value.length < 6)
+	{
+		document.getElementById('une').innerHTML = "Zipcode must be 6 digits!";
+		citizen_signup_form.zipcode.focus();
+		return(false);
+	}
+	if (document.citizen_signup_form.contact.value=="") {
+		document.getElementById('une').innerHTML = "Contact required!";
+		return(false);
+	}
+	else if(document.citizen_signup_form.contact.value.length < 10)
+	{
+		document.getElementById('une').innerHTML = "Contact should contain 10 digits!";
+		citizen_signup_form.pass.focus();
+		return(false);
+	}
+	else
+	{
+		var dataurl="http://localhost/appon/signup.php"
+	  var formdataarray= $('form').serializeArray();
+	  console.log(formdataarray);
+	  $.ajax({
+	      url: dataurl,
+	      type: "POST",
+	      data: formdataarray,
+	      success: function(data) {
+	          console.log("data sended");
+	      },
+	      error: function(jqXHR, textStatus, errorThrown) {
+	          console.log(textStatus, errorThrown);
+	      }
+	  });
+		console.log("ee");
+	}
+});
 </script>
 </td>
 </tr>
