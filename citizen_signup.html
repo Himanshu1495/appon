@@ -1,7 +1,9 @@
 <html>
-<head>
+	<head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="/js/jquery-3.2.0.min.js" type="JavaScript/Text"></script>
+
 <title>Citizen Signup</title>
 </head>
 <body>
@@ -13,29 +15,29 @@
 <form name="citizen_signup_form">
 <table>
 <tr>
-<td> User Name:</td> <td><input type="text" name="uname"/>
+<td> User Name:</td> <td><input type="text" id="uname" name="uname"/>
 </td>
 </tr>
 <tr>
-<td>Email Address: </td> <td> <input type="email" name="uemail"/>
-</td>
-</tr>
-</tr>
-<tr>
-<td> Password : </td> <td> <input type="password" name="pass"/>
+<td>Email Address: </td> <td> <input type="email" id="email" name="uemail"/>
 </td>
 </tr>
 </tr>
 <tr>
-<td> Confirm Password: </td> <td> <input type="password" name="confpass"/>
+<td> Password : </td> <td> <input type="password" id="password" name="pass"/>
+</td>
+</tr>
+</tr>
+<tr>
+<td> Confirm Password: </td> <td> <input type="password" id="confpass" name="confpass"/>
 </td>
 </tr>
 <tr>
-<td>Zipcode : </td><td><input type="text" name="zipcode"/></td>
+<td>Zipcode : </td><td><input type="text" id="zipcode" name="zipcode"/></td>
 </td>
 </tr>
 <tr>
-<td>Contact : </td><td><input type="tel" name="contact"/></td>
+<td>Contact : </td><td><input type="tel" id="contact" name="contact"/></td>
 </td>
 </tr>
 
@@ -52,7 +54,8 @@
 </tr>
 </table>
 </tr>
-
+<script src="/js/jquery-3.2.0.min.js" type="JavaScript/Text"></script>
+<script src="/js/data_send.js" type="JavaScript/Text"></script>
 <script type="Text/JavaScript">
 $( "form" ).submit(function( event ) {
 
@@ -109,18 +112,27 @@ $( "form" ).submit(function( event ) {
 	else
 	{
 		var dataurl="http://localhost/appon/citi_signup.php"
-	  var formdataarray= $('form').serializeArray();
-	  console.log(formdataarray);
+		var name= $('#uname').val();
+		var email= $('#email').val();
+		var password= $('#confpass').val();
+		var zipcode= $('#zipcode').val();
+		var contact= $('#contact').val();
+		var datastring="&name="+name+"&email="+email+"&confpass="+password+"&zipcode="+zipcode+"&contact="+contact;
+		console.log(datastring);
 	  $.ajax({
 	      url: dataurl,
 	      type: "POST",
-	      data: formdataarray,
-	      success: function(data) {
-	          window.location.replace("");//name of next page goes here
-	      },
-	      error: function(jqXHR, textStatus, errorThrown) {
-	          console.log(textStatus, errorThrown);
-	      }
+	      data: datastring,
+	      crossDomain: true,
+	      cache: false,
+	      beforeSend: function() {} //Popup notification that data is being send.
+	  }).done(function (msg) {
+	  		if(msg="Updated"){
+					window.location.replace(""); // Next page goes here
+			}
+		        else{
+				//some error message to user.
+			}
 	  });
 	}
 });
