@@ -123,11 +123,16 @@ $( "form" ).submit(function( event ) {
 	      url: dataurl,
 	      type: "POST",
 	      data: datastring,
-	     	beforeSend: function() {} //Popup notification that data is being send.
+	      crossDomain: true,
+	      cache: false,
+	      beforeSend: function() {} //Popup notification that data is being send.
 	  }).done(function (msg) {
 	  		if(msg="Updated"){
 					window.location.replace(""); // Next page goes here
-				}
+			}
+		        else{
+				//some error message to user.
+			}
 	  })
 	}
 });
