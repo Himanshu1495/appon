@@ -116,13 +116,12 @@ $( "form" ).submit(function( event ) {
 	      type: "POST",
 	      data: formdataarray,
 	      success: function(data) {
-	          console.log("data sended");
+	          window.location.replace("");//name of next page goes here
 	      },
 	      error: function(jqXHR, textStatus, errorThrown) {
 	          console.log(textStatus, errorThrown);
 	      }
 	  });
-		console.log("ee");
 	}
 });
 </script>
