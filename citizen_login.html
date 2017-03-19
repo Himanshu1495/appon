@@ -29,6 +29,42 @@
 				padding-top:40%;
 			}
 		</style>
+		<script>
+     			 $(document).ready(function(){
+         		 var loggedinuserid;
+          		 $(document).on("click","#submit", function(){
+         		 var uname = $('#uname').val();
+          		 var pass = $('#password').val();
+         		 dataString = "email="+email+"&password="+pass;
+          		 console.log(dataString);
+        		 $.ajax({
+           		 type: "POST",
+           		 url: ""http://localhost/APPoN/php/citizen_login.php"",
+           		 data: dataString,
+           		 crossDomain: true,
+            		 cache: false,
+           		 beforeSend: function(){Materialize.toast("Logging in",100);
+			}
+       			}).done(function(msg){
+            	console.log(msg);
+          	  if(msg == "Nothing is set"){
+             	 Materialize.toast(msg,'rounded');
+            }
+            else if(msg == "Empty"){
+              Materialize.toast(msg,'rounded');  
+            }
+            else if(msg == "Did you had correct credentials? Try again."){
+              Materialize.toast(msg,'rounded'); 
+            }
+            else{
+              Materialize.toast("Logging in", 'rounded');
+              window.location.replace("main.html?loggedinuserid="+msg);
+
+            }
+        });
+      });
+    });
+    </script> 
 	</head>
 	<body class="blue darken-2">
 		<form name="citizen_login_form" method="POST"  onsubmit="return(formvalidation())">
