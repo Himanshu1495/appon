@@ -19,7 +19,7 @@
 </td>
 </tr>
 <tr>
-<td>Email Address: </td> <td> <input type="email" id="email" name="uemail"/>
+<td>Email Address: </td> <td> <input type="email" id="uemail" name="uemail"/>
 </td>
 </tr>
 </tr>
@@ -111,13 +111,18 @@ $( "form" ).submit(function( event ) {
 	}
 	else
 	{
-		var dataurl="http://localhost/appon/citi_signup.php"
-		var name= $('#uname').val();
-		var email= $('#email').val();
-		var password= $('#confpass').val();
-		var zipcode= $('#zipcode').val();
-		var contact= $('#contact').val();
-		var datastring="&name="+name+"&email="+email+"&confpass="+password+"&zipcode="+zipcode+"&contact="+contact;
+		var dataurl="http://localhost/appon/citi_signup.php";
+		//var name= document.getElementById('uname').value;
+		//var email= document.getElementById('uemail').value;
+		//var password= document.getElementById('password').value;
+		//var zipcode= document.getElementById('zipcode').value;
+		//var contact= document.getElementById('contact').value;
+		var name = $('#uname').val();
+		var email = $('#uemail').val();
+		var password = $('#password').val();
+		var zipcode = $('#zipcode').val();
+		var contact = $('#contact').val();
+		var datastring="&uname="+name+"&uemail="+email+"&confpass="+password+"&zipcode="+zipcode+"&contact="+contact;
 		console.log(datastring);
 	  $.ajax({
 	      url: dataurl,
@@ -125,13 +130,23 @@ $( "form" ).submit(function( event ) {
 	      data: datastring,
 	      crossDomain: true,
 	      cache: false,
-	      beforeSend: function() {} //Popup notification that data is being send.
+	      //beforeSend: function() {} //Popup notification that data is being send.
 	  }).done(function (msg) {
+	  		console.log(msg);
 	  		if(msg="Updated"){
-					window.location.replace(""); // Next page goes here
+					window.location.replace("http://localhost/appon/citizen_login.html"); // Next page goes here
 			}
-		        else{
+		    else if(msg="usrname"){
 				//some error message to user.
+			}
+			else if(msg="email"){
+				//some error message to user for email
+			}
+			else if(msg="contact"){
+				//error message for contact
+			}
+			else{
+				//display error 
 			}
 	  });
 	}
