@@ -1,20 +1,65 @@
 <html>
   <head>
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-
-  </head>
-  <body>
-    <form name="citizen_signup_form">
-       
-      
-      Email Address : <input type="email" id="uemail" name="uemail"/><br>
-      Password : <input type="password" id="password" name="pass"/><br>
-      Confirm Password : <input type="password" id="confpass" name="confpass"/><br>
-      Zipcode : <input type="text" id="zipcode" name="zipcode"/><br>
-      Contact : <input type="tel" id="contact" name="contact"/><br>
-      <input type="submit" value="Register Now"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
-    </form>
+    <style>
+      #cardpanel{
+        padding-top:40%;
+      }
+    </style>  
+
+</head>
+<body class="blue darken-2">
+  <div class="container" id="cardpanel">
+    <div class="row">
+      <br><br>
+      <div class="col s10 offset-s1">
+        <div class="card-panel white">
+          <form name="citizen_signup_form">
+              <h2 class="center">Citizen Sign Up</h2>
+                <br><br><br>
+                  <div class="row">
+                    <div class="input-field col s9 offset-s1">
+                      <input type="email" id="uemail" name="uemail"/><br>
+                      <label for="email">Email</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s9 offset-s1">
+                      <input type="password" id="password" name="pass"/><br>
+                      <label for="password">Password</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s9 offset-s1">    
+                      <input type="password" id="confpass" name="confpass"/><br>
+                      <label for="confpass">Confirm Password</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s9 offset-s1">                
+                      <input type="text" id="zipcode" name="zipcode"/><br>
+                      <label for="zipcode">Zipcode</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s9 offset-s1">                           
+                      <input type="tel" id="contact" name="contact"/><br>
+                      <label for="contact">Contact</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col s9 offset-s1"> 
+                      <button class="btn waves-effect waves-light" type="submit" value="Register Now"/>Register
+                        <i class="material-icons right">send</i>
+                      </button>
+                    </div>
+                  </div>
+                </div>   
+          </form>
     <script>
 
 
@@ -34,6 +79,8 @@
           var x = document.forms["citizen_signup_form"]["pass"].value; 
           var y = document.forms["citizen_signup_form"]["confpass"].value;
           if (x != y) {
+            document.forms["citizen_signup_form"]["pass"].value = "";
+            document.forms["citizen_signup_form"]["confpass"].value = "";
             alert("Passwords do not match");
             return false;
           }
@@ -59,12 +106,12 @@
                 location.href = "http://localhost/appon/citizen_login.html";
               }
               if (response=="email") {
-                alert('Email already exists!');
                 document.forms["citizen_signup_form"]["uemail"].value = "";
+                alert('Email already exists!');
               }
               if (response=="contact") {
-                alert('Contact already exists!');
                 document.forms["citizen_signup_form"]["contact"].value = "";
+                alert('Contact already exists!');
       
               }
             }
