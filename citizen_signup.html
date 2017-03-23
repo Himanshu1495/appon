@@ -1,6 +1,8 @@
 <html>
   <head>
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <!--<script src="http://code.jquery.com/jquery-1.9.1.js"></script>-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -23,10 +25,18 @@
                 <br><br><br>
                   <div class="row">
                     <div class="input-field col s9 offset-s1">
+                      <input type="text" id="uname" name="uname"/><br>
+                      <label for="uname">Name</label>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="input-field col s9 offset-s1">
                       <input type="email" id="uemail" name="uemail"/><br>
                       <label for="email">Email</label>
                     </div>
                   </div>
+                  
                   <div class="row">
                     <div class="input-field col s9 offset-s1">
                       <input type="password" id="password" name="pass"/><br>
@@ -66,11 +76,17 @@
         $('form').on('submit', function (e) {
           e.preventDefault();
 
+          var x = document.forms["citizen_signup_form"]["uname"].value;
+          if (x == "") {
+              alert("Name must be filled out");
+              return false;
+          }
           var x = document.forms["citizen_signup_form"]["uemail"].value;
           if (x == "") {
               alert("Email must be filled out");
               return false;
           }
+          
           var x = document.forms["citizen_signup_form"]["pass"].value;
           if (x == "") {
             alert("Password must be filled out");
@@ -97,13 +113,15 @@
 
           $.ajax({
             type: 'post',
-            url: 'http://localhost/appon/citi_signup.php',
+            //url: 'http://localhost/appon/citi_signup.php',
+            url: 'https://appon.000webhostapp.com/citi_signup.php',
+            cache: false,
             data: $('form').serialize(),
             success: function (response) {
               console.log(response);
               if (response=="done") {
                 alert('Welcome to AppON');
-                location.href = "http://localhost/appon/citizen_login.html";
+                location.href = "verify.html";
               }
               if (response=="email") {
                 document.forms["citizen_signup_form"]["uemail"].value = "";

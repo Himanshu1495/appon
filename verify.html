@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    
+  </head>
+  <body>
+    <form name="verify">
+      <input type="text" name="otp"/><br>
+      <input type="submit" value="Verify">
+    </form>
+    <script>
+        
+        $('form').on('submit', function (e) {
+
+          e.preventDefault();
+          var x = document.forms["verify"]["otp"].value;
+          if (!x.match(/^\d{4}$/)) {
+            alert("Invalid OTP!");
+            return false;
+          }
+          console.log("inside");
+          $.ajax({
+            type: 'post',
+            url: 'https://appon.000webhostapp.com/otp_verify.php',
+            cache: false,
+            data: $('form').serialize(),
+            success: function (response) {
+              console.log(response);
+              if (response=="done") {
+                alert('Verified');
+                window.location.replace = "citizen_login.html";
+              }
+              else if(response=="invalid"){
+                alert("Please enter correct otp");
+              }
+              else{
+                alert("we are unable to connect to our servers. Please try again after sometime");
+              }
+            }
+          });
+
+        });
+
+    </script>
+  </body>
+</html>

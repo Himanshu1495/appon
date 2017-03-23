@@ -1,6 +1,8 @@
 <html>
 	<head>
-		 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		 <!--<script src="http://code.jquery.com/jquery-1.9.1.js"></script>-->
+		 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
 		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
 		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -57,13 +59,19 @@
           		}
 		          $.ajax({
 		            type: 'post',
-		            url: 'http://localhost/appon/citizen_login.php',
+		            //url: 'http://localhost/appon/citizen_login.php',
+		            url: 'https://appon.000webhostapp.com/citizen_login.php',
+		            cache: false,
 		            data: $('form').serialize(),
 		            success: function (response) {
 		            	console.log(response);
 		            	if (response=="done") {
 		            		//alert('Logging in!');
-		              		location.href = "http://localhost/appon/dummyfile.html";
+		              		location.href = "dummyfile.html";
+		            	}
+		            	if (response=="otp") {
+		            		alert('OTP not verified!');
+		            		location.href = "verify.html";
 		            	}
 		            	if (response=="invalid") {
 		            		alert('Invalid email or password!');
