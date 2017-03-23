@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 21, 2017 at 11:02 AM
+-- Generation Time: Mar 23, 2017 at 05:04 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -40,6 +40,8 @@ CREATE TABLE `centers` (
 
 INSERT INTO `centers` (`id`, `name`, `contact`, `email`, `address`) VALUES
 (1, 'National Highways Authority of India', '25093503', ' chairman@nhai.org', 'Plot No. G-5 & 6, Sector-10, Dwarka, New Delhi-75'),
+(2, 'Indian Academy of Highway Engineers', '0120- 2400085 - 86 2405006 - 09', ' director.iahe@gmail.com', ' A-5, Institutional Area, Sector 62, NOIDA, UP'),
+(3, 'National Highways and Infrastructure Development Corporation, N. Delhi\r\n', '·23461600 ', 'info@nhidcl.com ', '3rd Floor, PTI Building, 4 Parliament Street,\r\nNew Delhi - 110001\r\n'),
 (4, 'Regional Office, Bhopal', ' 0755-2551329', 'romorthbhoal@gmail.com', 'MP PWD - D Wing, Satpura Bhawan, Bhopal'),
 (5, 'Regional Office Chandigarh', '0172-2743228', ' mostchd@chd.nic.in', 'Kendriya Sadan, e Floor, Sector 9A, Chandigarh'),
 (6, 'Regional Office. Gandhinagar', '079-23240091 ', 'rogandhinagar@yahoo.in', 'New Sachivalaya, Block No.14, 2na Floor, Gandhinagar'),
@@ -55,11 +57,9 @@ INSERT INTO `centers` (`id`, `name`, `contact`, `email`, `address`) VALUES
 (16, 'Regional Office Mumbai', ' 022-25288470 ', 'romumbai@rediffmail.com', ' 95, New Admn. Buidling No.2 Ground Floor, PWO Compound, RC Marg, Chembur, Mumbai'),
 (17, 'Regional Office Bhubaneshwar', ' 0674-2564546', ' robbsr.morth@gmail.com', ' C/o World Bank Project, 184, Infront of CRPF Stadium Baramunda, Bubaneshwar'),
 (18, 'Regional Office (Civil) Ranchi', ' 06512550301', 'roranchi03@gmail.com', ' Engineers Hostel, Ground floor, Suit No.3 HECCampus, PO Ohurwa, Ranchi'),
+(19, 'ELO Shimla', ' ', 'eloshimla@gmail.com', 'Nirman Bhawan, Simla-II, Himachal Pradesh'),
 (20, 'RO Oehradun', ' 035-2531125', ' romorthddn@gmail.com ', 'C/o CE Level 1, PWO, Uttranchal Camp Office DEhradun'),
 (21, 'Regional Office, Jaipur', ' 0141-2811776', ' ro.jaipur.morth@gmail.com ', 'OCM Ajmer Road, P.O. Shyam Nagar, Jaipur'),
-(2, 'Indian Academy of Highway Engineers', '0120- 2400085 - 86 2405006 - 09', ' director.iahe@gmail.com', ' A-5, Institutional Area, Sector 62, NOIDA, UP'),
-(3, 'National Highways and Infrastructure Development Corporation, N. Delhi\r\n', '·23461600 ', 'info@nhidcl.com ', '3rd Floor, PTI Building, 4 Parliament Street,\r\nNew Delhi - 110001\r\n'),
-(19, 'ELO Shimla', ' ', 'eloshimla@gmail.com', 'Nirman Bhawan, Simla-II, Himachal Pradesh'),
 (22, 'Regional Office, Itanagar', ' ', 'ashwani.kmr@nic.in', 'House No. 522, Ground Floor, Millan Nagar, Gutlung Tezpur-784001, Assam'),
 (23, ' Regional Office, Vijaywada', ' ', 'shrawan.k@nic.in', 'Regional Office Vijaywada, Mlo Road Transport &Highways, Gorle DalappanaVeedhi, Near American Hospit');
 
@@ -81,33 +81,70 @@ CREATE TABLE `minister_db` (
   `pending` int(20) NOT NULL,
   `uuid` varchar(20) NOT NULL,
   `photo` varchar(100) NOT NULL,
-  `latitude` double NOT NULL,
-  `longitude` double NOT NULL
+  `location` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `minister_db`
 --
 
-INSERT INTO `minister_db` (`id`, `name`, `email`, `department`, `rating`, `position`, `total`, `resolved`, `pending`, `uuid`, `photo`, `latitude`, `longitude`) VALUES
-(1, 'Shri S.N.Das', 'das.sn@nic.in', 'Road Development', 0, 'Director Genera', 0, 0, 0, '', '', 0, 0),
-(2, 'Shri Sudip Chaudhury', 'sudipch2009@gmail.com', 'Planning', 0, 'CE', 0, 0, 0, '', '', 0, 0),
-(3, 'Ms.Leena Nandan', 'js-morth@gov.in', 'LA', 0, 'Secretary', 0, 0, 0, '', '', 0, 0),
-(4, 'Shri S.K.Verma', 'sunilkumar.verma@nic.in', '(S&R)Roads', 0, 'CE', 0, 0, 0, '', '', 0, 0),
-(5, 'Ms. Dakshita Das', 'dakshita.das@nic.in', '(T&C,GAP)', 0, 'Joint Secretary', 0, 0, 0, '', '', 0, 0),
-(6, 'Shri Ameesh Aggrawal', 'ameesh.agg@gmail.com', 'Accounts', 0, 'Controller', 0, 0, 0, '', '', 0, 0),
-(7, 'Shri Rohit Kumar Singh', 'singhrk@nic.in', 'Highway', 0, 'Joint Secretary', 0, 0, 0, '', '', 0, 0),
-(8, 'Shri Abhay Damle', 'abhay.damle.gov.in', 'Transport', 0, 'joint Secretary', 0, 0, 0, '', '', 0, 0);
+INSERT INTO `minister_db` (`id`, `name`, `email`, `department`, `rating`, `position`, `total`, `resolved`, `pending`, `uuid`, `photo`, `location`) VALUES
+(1, 'Shri S.N.Das', 'das.sn@nic.in', 'Road Development', 0, 'Director Genera', 0, 0, 0, '', '', ''),
+(2, 'Shri Sudip Chaudhury', 'sudipch2009@gmail.com', 'Planning', 0, 'CE', 0, 0, 0, '', '', ''),
+(3, 'Ms.Leena Nandan', 'js-morth@gov.in', 'LA', 0, 'Secretary', 0, 0, 0, '', '', ''),
+(4, 'Shri S.K.Verma', 'sunilkumar.verma@nic.in', '(S&R)Roads', 0, 'CE', 0, 0, 0, '', '', ''),
+(5, 'Ms. Dakshita Das', 'dakshita.das@nic.in', '(T&C,GAP)', 0, 'Joint Secretary', 0, 0, 0, '', '', ''),
+(6, 'Shri Ameesh Aggrawal', 'ameesh.agg@gmail.com', 'Accounts', 0, 'Controller', 0, 0, 0, '', '', ''),
+(7, 'Shri Rohit Kumar Singh', 'singhrk@nic.in', 'Highway', 0, 'Joint Secretary', 0, 0, 0, '', '', ''),
+(8, 'Shri Abhay Damle', 'abhay.damle.gov.in', 'Transport', 0, 'joint Secretary', 0, 0, 0, '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `request`
+--
+
+CREATE TABLE `request` (
+  `app_id` varchar(50) NOT NULL,
+  `id` int(10) NOT NULL,
+  `name` text NOT NULL,
+  `reason` text NOT NULL,
+  `date` date NOT NULL,
+  `time` time(6) NOT NULL,
+  `color` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `request`
+--
+
+INSERT INTO `request` (`app_id`, `id`, `name`, `reason`, `date`, `time`, `color`) VALUES
+('1', 0, 'Yagnesh', 'toll', '2017-03-15', '04:14:18.391797', '#ffb128'),
+('2', 0, 'Himanshu', 'Vehicle Overload', '2017-03-17', '19:21:50.484656', '#28cbff'),
+('3', 0, 'Chintan', 'Highway safety', '2017-03-17', '15:30:00.000000', '#9cc370'),
+('4', 0, 'Karan', 'Overcharged Penalties', '2017-04-05', '10:00:00.000000', '#9cc370');
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `centers`
+--
+ALTER TABLE `centers`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `minister_db`
 --
 ALTER TABLE `minister_db`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `request`
+--
+ALTER TABLE `request`
+  ADD PRIMARY KEY (`app_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
