@@ -1,5 +1,6 @@
 <html>
 	<head>
+		 <!--<script src="http://code.jquery.com/jquery-1.9.1.js"></script>-->
 		 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
@@ -41,5 +42,45 @@
 		      </div>
 		    </div>
 		</div>
+		<script type="text/javascript">
+				$('form').on('submit', function (e) {		
+
+		        e.preventDefault();		
+		        var x = document.forms["login_form"]["uemail"].value;
+          		if (x == "") {
+              		alert("Email required!");
+              		return false;
+          		}
+          		var x = document.forms["login_form"]["pass"].value;
+          		if (x == "") {
+              		alert("Password required!");
+              		return false;
+          		}
+		          $.ajax({
+		            type: 'post',
+		            //url: 'http://localhost/appon/login.php',
+		            url: 'https://appon.000webhostapp.com/login.php',
+		            cache: false,
+		            data: $('form').serialize(),
+		            success: function (response) {
+		            	console.log(response);
+		            	if (response=="done") {
+		            		//alert('Logging in!');
+		              		location.href = "dummyfile.html";
+		            	}
+		            	if (response=="otp") {
+		            		alert('OTP not verified!');
+		            		location.href = "verify.html";
+		            	}
+		            	if (response=="invalid") {
+		            		alert('Invalid email or password!');
+		            		document.forms["login_form"]["pass"].value = "";
+		            	}	
+		              
+		            }
+		          });		
+
+		        });
+		</script>
 	</body>
 </html>
