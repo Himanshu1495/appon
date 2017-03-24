@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <!--<script src="http://code.jquery.com/jquery-1.9.1.js"></script>-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+  </head>
+  <body>
+    <form name="reason_form">
+      Reason :  <select name="reason" id="reason">
+                  <option value="rd_mgmt">Road Management</option>
+                  <option value="traffic">Traffic</option>
+                  <option value="toll">Toll</option>
+                  <option value="over_pen">Overcharge Penalty</option>
+                  <option value="high_safe">Highway Safety</option>
+                  <option value="over_vehic">Overload Vehicles</option>
+                </select><br><br>
+     
+      Agenda : <input type="textarea" id="agenda" name="agenda" maxlength="50"><br><br>
+      Number of visitors : <input type="number" id="no_of_vis" name="no_of_vis" min="1" max="10" value="1"><br><br>
+      Location : <select name="location" id="location">
+                  <option value="bangalore">Bangalore</option>
+                  <option value="bhopal">Bhopal</option>
+                  <option value="bhubaneshwar">Bhubaneshwar</option>
+                  <option value="chandigarh">Chandigarh</option>
+                  <option value="chennai">Chennai</option>
+                  <option value="dehradhun">Dehradhun</option>
+                  <option value="gandhinagar">Gandhinagar</option>
+                  <option value="guwahati">Guwahati</option>
+                  <option value="himachal">Himachal</option>
+                  <option value="hyderabad">Hyderabad</option>
+                  <option value="itanagar">Itanagar</option>
+                  <option value="jaipur">Jaipur</option>
+                  <option value="kolkata">Kolkata</option>
+                  <option value="lucknow">Lucknow</option>
+                  <option value="mumbai">Mumbai</option>
+                  <option value="delhi">New Delhi</option>
+                  <option value="noida">Noida</option>
+                  <option value="patna">Patna</option>
+                  <option value="raipur">Raipur</option>
+                  <option value="ranchi">Ranchi</option>
+                  <option value="thiruvananthapuram">Thiruvananthapuram</option>
+                  <option value="vijaywada">Vijaywada</option>
+                 </select><br><br>
+        <input type="submit" value="Take Appointment">       
+    </form>
+    <script>
+
+        $('form').on('submit', function (e) {
+
+          e.preventDefault();
+
+          var x = document.forms["reason_form"]["agenda"].value;
+          if (x == "") {
+            alert("Agenda required!");
+            return false;
+          } 
+          if (confirm("Confirm Appointment Request?")) {
+
+
+            $.ajax({
+              type: 'post',
+              url: 'http://localhost/appon/request.php',
+              data: $('form').serialize(),
+              success: function () {
+                alert('Appointment has been requested!');
+                location.replace = "citizen_requested.html";
+              }
+            });
+          }
+          else{
+            
+            document.forms["reason_form"]["agenda"].value = "";
+            document.forms["reason_form"]["no_of_vis"].value = "1";
+            document.forms["reason_form"]["reason"].value = "rd_mgmt";
+            document.forms["reason_form"]["location"].value = "bangalore";
+            alert("Appointment Request Cancelled!");
+          }  
+        });
+
+    </script>
+  </body>
+</html>
