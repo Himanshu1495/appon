@@ -7,7 +7,7 @@
       die('Could not connect: ' . mysql_error());
    }
    
-   $sql = 'SELECT * FROM minister_db WHERE id="$loggedinid"';
+   $sql = 'SELECT * FROM request WHERE id="$loggedinid"';
    mysql_select_db('minister');
    $retval = mysql_query( $sql, $conn );
    

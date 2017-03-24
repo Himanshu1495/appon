@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2017 at 05:04 PM
+-- Generation Time: Mar 24, 2017 at 06:32 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -108,7 +108,7 @@ CREATE TABLE `request` (
   `app_id` varchar(50) NOT NULL,
   `id` int(10) NOT NULL,
   `name` text NOT NULL,
-  `reason` text NOT NULL,
+  `agenda` text NOT NULL,
   `date` date NOT NULL,
   `time` time(6) NOT NULL,
   `color` text NOT NULL
@@ -118,7 +118,7 @@ CREATE TABLE `request` (
 -- Dumping data for table `request`
 --
 
-INSERT INTO `request` (`app_id`, `id`, `name`, `reason`, `date`, `time`, `color`) VALUES
+INSERT INTO `request` (`app_id`, `id`, `name`, `agenda`, `date`, `time`, `color`) VALUES
 ('1', 0, 'Yagnesh', 'toll', '2017-03-15', '04:14:18.391797', '#ffb128'),
 ('2', 0, 'Himanshu', 'Vehicle Overload', '2017-03-17', '19:21:50.484656', '#28cbff'),
 ('3', 0, 'Chintan', 'Highway safety', '2017-03-17', '15:30:00.000000', '#9cc370'),
