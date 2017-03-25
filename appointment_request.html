@@ -1,0 +1,136 @@
+<html>
+	<head>
+		 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+		
+		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		
+		<style>
+			#cardpanel{
+				padding-top:5%;
+			}
+			
+		</style>
+	</head>
+	<body class="light-blue ">
+		<form name="citizen_request_form">
+		<div class="container" id="cardpanel"><br><br>
+		        	<div class="card-panel white">
+						<center><h5>Appointment</h5></center><br><br>
+						<div class="row">
+								<div class="input-field col s12">
+									<select name="reason" id="reason">
+										<option value="" disabled selected>Choose the reason:</option>
+										<option value="1">Road Management</option>
+										<option value="2">Traffic</option>
+										<option value="3">Toll</option>
+										<option value="4">Overcharge penalites</option>
+										<option value="5">Highway Safety</option>
+										<option value="6">Overload Vehicles</option>
+									</select>
+										<label>Reason</label>
+								</div>
+					     </div>
+						<div class="row">
+								<div class="input-field col s12">
+									<input type="textarea" name="agenda" id="agenda" maxlength="50" class="validate">
+									<label>Agenda</label>
+								</div>
+					     </div>
+												
+
+							
+			          	<div class="row">
+								<div class="input-field col s12">
+									<select name="location" id="location">
+										<option value="" disabled selected>Choose the location:</option>
+										<option value="bangalore">Bangalore</option>
+                  						<option value="bhopal">Bhopal</option>
+						                <option value="bhubaneshwar">Bhubaneshwar</option>
+						                <option value="chandigarh">Chandigarh</option>
+						                <option value="chennai">Chennai</option>
+						                <option value="dehradhun">Dehradhun</option>
+						                <option value="gandhinagar">Gandhinagar</option>
+						                <option value="guwahati">Guwahati</option>
+						                <option value="himachal">Himachal</option>
+						                <option value="hyderabad">Hyderabad</option>
+						                <option value="itanagar">Itanagar</option>
+						                <option value="jaipur">Jaipur</option>
+						                <option value="kolkata">Kolkata</option>
+						                <option value="lucknow">Lucknow</option>
+						                <option value="mumbai">Mumbai</option>
+						                <option value="delhi">New Delhi</option>
+						                <option value="noida">Noida</option>
+						                <option value="patna">Patna</option>
+						                <option value="raipur">Raipur</option>
+						                <option value="ranchi">Ranchi</option>
+						                <option value="thiruvananthapuram">Thiruvananthapuram</option>
+						                <option value="vijaywada">Vijaywada</option>	
+									</select>
+										<label>Location</label>
+								</div>
+					     </div>
+					     <div class="row">
+								<label>Number of visitors:</label>
+								<p>Slide to increase</p>
+								<p class="range-field">
+								  <input type="range" id="no_of_vis" min="1" max="10" value="1" />
+								</p>
+	     				</div>
+						<div class="row">
+							<div class="col s9 offset-s2">
+								<button class="btn waves-effect waves-light black white-text" type="submit" name="action">Request 
+									<i class="material-icons right">send</i>
+								</button>
+							</div>
+						</div>
+					</div>
+		      </div>
+		    </div>
+		</div>
+	</form>
+	<script type="text/javascript">
+				$('form').on('submit', function (e) {		
+
+		        e.preventDefault();	
+
+		        var x = document.forms["citizen_request_form"]["reason"].value;
+		        if (x == "") {
+		        	alert('Reason Required!');
+		        	return false;
+		        }
+
+
+		        var x = document.forms["citizen_request_form"]["location"].value;
+		        if (x == "") {
+		        	alert('Location Required!');
+		        	return false;
+		        }
+
+		        var x = document.forms["citizen_request_form"]["agenda"].value;
+		        if (x == "") {
+		        	alert('Agenda Required!');
+		        	return false;
+		        }
+		          $.ajax({
+		            type: 'POST',
+		            url: 'http://localhost/appon/make_request.php',
+		            cache: false,
+		            data: $('form').serialize(),
+		            success: function (response) {
+		            	console.log(response);
+		            	if (response=="done") {
+		            		alert('Request Sent!');
+		              		location.href = "citizen_requested.html";
+		            	}
+		            	
+		              
+		            }
+		          });		
+
+		        });
+	</script>        	
+	</body>
+</html>
