@@ -5,6 +5,7 @@
 
 		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+		<!--<script src="getURLVars.js"></script>-->
 
 		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     	<style>
@@ -17,26 +18,33 @@
 		 
 	
 	<body class="blue darken-2">
-		<form name="minister_login_form">
+		<form name="minister_pass_change">
 			<div class="container" id="cardpanel">
 				<div class="row">
 			      	<div class="col s12 m5">
 			        	<div class="card-panel white">
 				          	<div class="row">
 						        <div class="input-field col s12">
-						          <input id="uemail" type="email" name ="uemail" class="validate">
-						          <label for="email">Email</label>
+						          <input id="oldpass" type="password" name ="oldpass" class="validate">
+						          <label for="oldpass">Current Password</label>
+						        </div>
+						     </div>
+
+				          	<div class="row">
+						        <div class="input-field col s12">
+						          <input id="pass" type="password" name ="pass" class="validate">
+						          <label for="pass">New Password</label>
 						        </div>
 						     </div>
 						     <div class="row">
 						        <div class="input-field col s12">
-						          <input id="pass" type="password" name="pass" class="validate">
-						          <label for="password">Password</label>
+						          <input id="confpass" type="password" name="confpass" class="validate">
+						          <label for="confpass">Confirm Password</label>
 						        </div>
 		     				</div>
 							<font color="red"> <div id="une" align="center"> </div> </font>
 							<div>  </div>
-							<button class="btn waves-effect waves-light" type="submit">Login
+							<button class="btn waves-effect waves-light" type="submit">Change
 								<i class="material-icons right">send</i>
 							 </button>  
 			        	</div>
@@ -45,41 +53,54 @@
 			</div>
 		</form>
 		<script type="text/javascript">
+				function getQueryVariable(variable) {
+				  var query = window.location.search.substring(1);
+				  var vars = query.split("&");
+				  for (var i=0;i<vars.length;i++) {
+				    var pair = vars[i].split("=");
+				    if (pair[0] == variable) {
+				      return pair[1];
+				    }
+				  } 
+				  alert('Query Variable ' + variable + ' not found');
+				}
+		
 				$('form').on('submit', function (e) {		
-
+				var email = getQueryVariable("email");
 		        e.preventDefault();		
-		        var x = document.forms["minister_login_form"]["uemail"].value;
+		        var x = document.forms["minister_pass_change"]["oldpass"].value;
           		if (x == "") {
-              		alert("Email required!");
+              		alert("Old Password required!");
               		return false;
           		}
-          		var x = document.forms["minister_login_form"]["pass"].value;
+		        var y = document.forms["minister_pass_change"]["pass"].value;
           		if (x == "") {
               		alert("Password required!");
               		return false;
           		}
+          		var y = document.forms["minister_pass_change"]["pass"].value;
+          		var z = document.forms["minister_pass_change"]["confpass"].value;
+          		if (y != z) {
+              		alert("Passwords do not match!");
+              		return false;
+          		}
+
 		          $.ajax({
 		            type: 'POST',
-		            url: 'http://localhost/appon/mini_login.php',
+		            url: 'http://localhost/appon/mini_pass_change.php?email='+email,
 		            //url: 'https://appon.000webhostapp.com/mini_login.php',
 		            cache: false,
 		            data: $('form').serialize(),
-		            //beforeSend: function(){alert("Logging in");},
 		            success: function (response) {
 		            	console.log(response);
 		            	if (response=="done") {
 		            		//alert('Logging in!');
-		              		location.href = "minister_main.html?email="+document.forms["minister_login_form"]["uemail"].value;
+		              		location.href = "minister_main.html";
 		            	}
 		            	if (response=="invalid") {
-		            		alert('Invalid email or password!');
-		            		document.forms["minister_login_form"]["pass"].value = "";
-		            	}	
-		            	if (response=="verify") {
-		            		alert('Welcome to AppON');
-		            		location.href = "mini_pass_change.html?email="+document.forms["minister_login_form"]["uemail"].value;
+		            		document.forms["minister_pass_change"]["oldpass"].value = "";
+		            		alert("Invalid current password!");
 		            	}
-		              
 		            }
 		          });		
 
