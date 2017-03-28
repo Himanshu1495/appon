@@ -1,0 +1,40 @@
+
+<html>
+	<head>
+		 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+		
+		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<style>
+			#cardpanel{
+				padding-top:15%;
+			}
+			
+		</style>
+	
+	</head>
+	<body class="light-blue ">
+		<form name="citizen_request_form">
+		<div class="container" id="cardpanel"><br>
+		    <div class="card-panel white">
+				<center><h5>Appointment</h5></center><br>
+					<p>Behaviour of officer:</p>
+					<p class="range-field">
+						<input type="range" id="no_of_vis" min="1" max="10" value="1" />
+					</p>
+					<p>Cleanliness of office:</p>
+						<p class="range-field">
+						<input type="range" id="no_of_vis" min="1" max="10" value="1" />
+					</p>
+	     			<button class="btn waves-effect waves-light black white-text" type="submit" name="action">Submit
+						<i class="material-icons right">send</i>
+					</button>
+			</div>
+		</div>
+		
+	</form>
+	        	
+	</body>
+</html>
