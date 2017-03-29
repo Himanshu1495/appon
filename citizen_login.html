@@ -67,7 +67,7 @@
 		            	console.log(response);
 		            	if (response=="done") {
 		            		//alert('Logging in!');
-		              		location.href = "appointment_request.html";
+		              		location.href = "appoint_reappoint.html?email="+document.forms["citizen_login_form"]["uemail"].value;
 		            	}
 		            	if (response=="otp") {
 		            		alert('OTP not verified!');

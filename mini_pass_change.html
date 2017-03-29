@@ -87,15 +87,15 @@
 
 		          $.ajax({
 		            type: 'POST',
-		            url: 'http://localhost/appon/mini_pass_change.php?email='+email,
-		            //url: 'https://appon.000webhostapp.com/mini_login.php',
+		            //url: 'http://localhost/appon/mini_pass_change.php?email='+email,
+		            url: 'https://appon.000webhostapp.com/mini_pass_change.php?email='+email,
 		            cache: false,
 		            data: $('form').serialize(),
 		            success: function (response) {
 		            	console.log(response);
 		            	if (response=="done") {
 		            		//alert('Logging in!');
-		              		location.href = "minister_main.html";
+		              		window.location.href = "minister_main.html";
 		            	}
 		            	if (response=="invalid") {
 		            		document.forms["minister_pass_change"]["oldpass"].value = "";
