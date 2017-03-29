@@ -1,0 +1,65 @@
+<html>
+	<head>
+		 <!--<script src="http://code.jquery.com/jquery-1.9.1.js"></script>-->
+		 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<style>
+			#cardpanel{
+				padding-top:20%;
+			}
+			
+		</style>
+		</head>
+	<body class="grey lighten-2 center">
+	<h1>OTP</h1>
+		<div class="container" id="cardpanel">
+			<div class="row">
+		      	<div class="col s12 m5 center">
+		        	<div class="card-panel white">
+			          	 <form name="verify">
+      					 <input type="text" name="otp"/><br>
+     					 <button  type="submit" value="Verify" class="btn waves-effect waves-light black">Verify</button>
+     					 </form>
+    				</div>
+		      </div>
+		    </div>
+		</div>
+			<script>
+        
+        $('form').on('submit', function (e) {
+
+          e.preventDefault();
+          var x = document.forms["verify"]["otp"].value;
+          if (!x.match(/^\d{4}$/)) {
+            alert("Invalid OTP!");
+            return false;
+          }
+          console.log("inside");
+          $.ajax({
+            type: 'post',
+            url: 'https://appon.000webhostapp.com/otp_verify.php',
+            cache: false,
+            data: $('form').serialize(),
+            success: function (response) {
+              console.log(response);
+              if (response=="done") {
+                alert('Verified');
+                window.location.replace = "citizen_login.html";
+              }
+              else if(response=="invalid"){
+                alert("Please enter correct otp");
+              }
+              else{
+                alert("we are unable to connect to our servers. Please try again after sometime");
+              }
+            }
+          });
+
+        });
+
+    </script>
+		</body>
+		</html>
