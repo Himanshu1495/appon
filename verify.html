@@ -1,14 +1,56 @@
 <html>
-  <head>
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    
-  </head>
-  <body>
-    <form name="verify">
-      <input type="text" name="otp"/><br>
-      <input type="submit" value="Verify">
+	<head>
+		 <!--<script src="http://code.jquery.com/jquery-1.9.1.js"></script>-->
+		 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			#cardpanel{
+				padding-top:30%;
+			}
+			
+		</style>
+		</head>
+    <body class="grey lighten-2 center">
+     <form name="verify">
+      <div class="container" id="cardpanel">
+          <div class="card-panel white">
+          <h3 class="center">OTP</h3>
+            <div class="row">
+            <div class="input-field col s12">
+               <input type="text" name="otp"/><br>
+            </div>
+
+
+            </div>
+            
+            <div class="col s12 center"> 
+                         <button  type="submit" value="Verify" class="btn waves-effect waves-light black">Verify
+                        <i class="material-icons right">send</i>
+                        </button>           
+                      </div>
+              </div>
+          </div>
+      </div>
     </form>
-    <script>
+	<!-- <body class="grey lighten-2 center">
+	<h1>OTP</h1>
+		<div class="container" id="cardpanel">
+			<div class="row">
+		      	<div class="col s12 m5 center">
+		        	<div class="card-panel white">
+			          	 <form name="verify">
+      					 <input type="text" name="otp"/><br>
+     					 <button  type="submit" value="Verify" class="btn waves-effect waves-light black">Verify</button>
+     					 </form>
+    				</div>
+		      </div>
+		    </div>
+		</div> -->
+
+			<script>
         
         $('form').on('submit', function (e) {
 
@@ -28,7 +70,7 @@
               console.log(response);
               if (response=="done") {
                 alert('Verified');
-                window.location.href = "citizen_login.html";
+                window.location.replace = "citizen_login.html";
               }
               else if(response=="invalid"){
                 alert("Please enter correct otp");
@@ -42,5 +84,5 @@
         });
 
     </script>
-  </body>
-</html>
+		</body>
+		</html>
