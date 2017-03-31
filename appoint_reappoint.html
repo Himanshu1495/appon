@@ -7,11 +7,50 @@
 		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<script>
+			$(document).ready(function(){
+				$('.modal').modal();
+				$('#modal1').modal('open');
+			});
+			
+		</script>
+		
 	</head>
-<body>
-	<form name="appoint_reappoint">
-		<input type="button" value="Appointment" id="appoint" name="appoint"><br>
-		<input type="button" value="Re-Appointment" id="reappoint" name="reappoint"><br>
+<body class="grey lighten-2">
+		<!-- Modal Structure -->
+						<div id="modal1" class="modal">
+							<div class="modal-content">
+								<h4>Please Note</h4>
+								<p class="flow-text">Do not click on Appointment if you already have an appointment</p>
+							</div>
+							<div class="modal-footer">
+								<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+							</div>
+						</div>
+				<!--Modal End-->
+	<form name="appoint_reappoint">				
+	<div class="container" id="cardpanel">
+			<div class="row">
+      <div class="col s12 ">
+        <div class="card-panel center">
+			<h4 class="center">Select your option:</h4>
+					<br><br><br>
+			<div class="row">
+				<div class="col s10 offset-s1 center">
+					<button class="btn waves-effect waves-light bold black" type="submit" id="appoint" name="appoint"><span class="Bold"> &nbsp; Appointment &nbsp; </span>
+						<i class="material-icons right">send</i>
+					</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s10 offset-s1 center">
+					<button class="btn waves-effect waves-light black" id="reappoint" type="submit" name="reappoint">ReAppointment
+						<i class="material-icons right">send</i>
+					</button>
+				</div>
+			</div>
+	
+		
 	</form>
 	<script type="text/javascript">
 				$('#appoint').click(function () {		
