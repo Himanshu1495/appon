@@ -74,7 +74,24 @@
 		              		alert('Your issue has already been resolved, kindly take another appointment!');
 		            	}
 		            	if (response=="reappoint") {
-		            		window.location.href = "reappoint.html?email="+email;
+		            		$.ajax({
+		           			 type: 'post',
+					           	url: 'http://localhost/appon/appoint_reappoint.php?email='+email,
+					            //url: 'https://appon.000webhostapp.com/appoint_reappoint.php?email='+email,
+					            cache: false,
+					            data: {appoint : 2},
+					            success: function (response) {
+					            	console.log(response);
+					            	if (response=="resolved") {
+					              		alert('Your issue has already been resolved, kindly take another appointment!');
+					            	}
+					            	if (response=="reappoint") {
+					            		
+					            	}
+					              
+					            }
+					          });	
+					            		
 		            	}
 		              
 		            }

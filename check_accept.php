@@ -10,7 +10,7 @@ if (mysqli_affected_rows($connect)==1) {
 		$mini_id = $row['mini_id'];
 
 	}
-	$minister_check = mysqli_query($connect,"SELECT * FROM minister_db WHERE id='$mini_id'");
+	$minister_check = mysqli_query($connect,"SELECT * FROM ministers WHERE id='$mini_id' AND level='1'");
 	if (mysqli_affected_rows($connect)==1) {
 		while ($res=mysqli_fetch_assoc($minister_check)) {
 			$mini_name = $res['name'];
@@ -27,7 +27,6 @@ if (mysqli_affected_rows($connect)==1) {
 			while ($c=mysqli_fetch_assoc($cen)) {
 				$center_location = $c['location'];
 				$center_address = $c['address'];
-				$center_name = $c['name'];
 			}
 		}
 	}
