@@ -107,7 +107,7 @@ function getnextslot($time,$app_date,$reason,$location,$no_of_vis,$agenda,$mini_
 $mini_result = mysqli_query($connect,"INSERT INTO minister_appointment(mini_id,citizen_email,reason,app_date,time_slot,slot_value) VALUES('$mini_id','$email','$reason','$next_date','$next_time','$next_slot')");
 $citizen_result = mysqli_query($connect,"INSERT INTO citizen_appointment(email,reason,agenda,location,no_of_vis,app_date,time_slot) VALUES('$email','$reason','$agenda','$location','$no_of_vis','$next_date','$next_time')");
 
-if ($mini_level==3) {
+if ($mini_level==4) {
 	"donedone";
 }
 else{

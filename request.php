@@ -8,7 +8,7 @@ $agenda = $_POST['agenda'];
 $location = $_POST['location'];
 $no_of_vis = $_GET['no_of_vis'];
 
-$location_check = mysqli_query($connect,"SELECT id FROM ministers WHERE location='$location' AND level='0'");
+$location_check = mysqli_query($connect,"SELECT id FROM ministers WHERE location='$location' AND level='1'");
 if (mysqli_affected_rows($connect)==1) {
 	while ($row=mysqli_fetch_assoc($location_check)) {
 		$cen_id = $row['id'];
