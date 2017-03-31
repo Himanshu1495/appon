@@ -1,0 +1,91 @@
+<html>
+	<head>
+		 <!--<script src="http://code.jquery.com/jquery-1.9.1.js"></script>-->
+		 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    	<style>
+			#cardpanel{
+				padding-top:40%;
+			}
+		</style>
+		
+    </head>  
+		 
+	
+	 
+	
+	<body class="grey lighten-2">
+		<form name="citizen_login_form">
+			<div class="container" id="cardpanel">
+			    <div class="card-panel white">
+					<h3 class="center">Citizen login</h3>
+				    <div class="row">
+						<div class="input-field col s12">
+							<input id="uemail" type="email" name ="uemail" class="validate">
+							<label for="username">Email</label>
+						</div>
+						<div class="input-field col s12">
+						    <input id="pass" type="password" name="pass" class="validate">
+						    <label for="password">Password</label>
+						</div>
+					    <div class="col s12"> 
+                      <button class="btn waves-effect waves-light black" type="submit" value="Register Now"/>Login
+                        <i class="material-icons right">send</i>
+                      </button>		
+					  
+					  
+					  <div class="col s12"> 
+                      <button class="btn waves-effect waves-light black" type="submit" value="Register Now"/>Login
+                        <i class="material-icons right">send</i>
+                      </button>					  
+                    </div>
+			        </div>
+			    </div>
+			</div>
+		</form>
+		<script type="text/javascript">
+				$('form').on('submit', function (e) {		
+		        e.preventDefault();		
+		        var x = document.forms["minister_login_form"]["uemail"].value;
+          		if (x == "") {
+              		alert("Email required!");
+              		return false;
+          		}
+          		var x = document.forms["minister_login_form"]["pass"].value;
+          		if (x == "") {
+              		alert("Password required!");
+              		return false;
+          		}
+		          $.ajax({
+		            type: 'POST',
+		            //url: 'http://localhost/appon/mini_login.php',
+		            url: 'https://appon.000webhostapp.com/mini_login.php',
+		            cache: false,
+		            data: $('form').serialize(),
+		            //beforeSend: function(){alert("Logging in");},
+		            success: function (response) {
+		            	console.log(response);
+		            	if (response=="done") {
+		            		//alert('Logging in!');
+		              		window.location.href = "minister_main.html?email="+document.forms["minister_login_form"]["uemail"].value;
+		            	}
+		            	if (response=="invalid") {
+		            		alert('Invalid email or password!');
+		            		document.forms["minister_login_form"]["pass"].value = "";
+		            	}	
+		            	if (response=="verify") {
+		            		alert('Welcome to AppON');
+		            		window.location.href = "mini_pass_change.html?email="+document.forms["minister_login_form"]["uemail"].value;
+		            	}
+		              
+		            }
+		          });		
+		        });
+		</script>        
+	</body>
+</html>
