@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2017 at 03:03 PM
+-- Generation Time: Mar 31, 2017 at 04:42 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -33,6 +33,16 @@ CREATE TABLE `centers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `centers`
+--
+
+INSERT INTO `centers` (`id`, `location`, `address`) VALUES
+(1, 'Mumbai', '101 Shivlok,ram galli,kandivali west'),
+(7, 'Chennai', 'No: 32/10, Abdul Aziz Street,\r\nS/O	:	KM.Muthuraman Chettiar	 	 	Kadhambari Appartments,\r\nKovil	:	Pil'),
+(13, 'Bhopal', 'Berasia Road, Near Bhopal Talkies'),
+(19, 'Jaipur', ':ISI-4, RIICO Institutional Block, Sitapura, Goner Road');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -50,7 +60,7 @@ ALTER TABLE `centers`
 -- AUTO_INCREMENT for table `centers`
 --
 ALTER TABLE `centers`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
