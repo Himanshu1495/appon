@@ -35,8 +35,8 @@
 					     </div>
 						<div class="row">
 								<div class="input-field col s12">
-									<input type="textarea" name="agenda" id="agenda" maxlength="50" class="validate">
-									<label>Agenda</label>
+									<textarea name="agenda" id="agenda" maxlength="50" class="validate materialize-textarea" data-length="50"></textarea>
+									<label for="agenda">Agenda</label>
 								</div>
 					     </div>
 												
@@ -79,7 +79,7 @@
 								  <input type="range" id="no_of_vis" min="1" max="10" value="1" />
 								</p>
 	     				</div>
-						<div class="row">
+					     <div class="row">
 							<div class="col s9 offset-s2">
 								<button class="btn waves-effect waves-light black white-text" type="submit" name="action">Request 
 									<i class="material-icons right">send</i>
@@ -92,8 +92,20 @@
 		</div>
 	</form>
 	<script type="text/javascript">
-				$('form').on('submit', function (e) {		
+				function getQueryVariable(variable) {
+				  var query = window.location.search.substring(1);
+				  var vars = query.split("&");
+				  for (var i=0;i<vars.length;i++) {
+				    var pair = vars[i].split("=");
+				    if (pair[0] == variable) {
+				      return pair[1];
+				    }
+				  } 
+				  alert('Query Variable ' + variable + ' not found');
+				}
 
+				$('form').on('submit', function (e) {		
+				var email = getQueryVariable("email");
 		        e.preventDefault();	
 
 		        var x = document.forms["citizen_request_form"]["reason"].value;
@@ -114,16 +126,20 @@
 		        	alert('Agenda Required!');
 		        	return false;
 		        }
+
+		        var sliderdata = document.forms["citizen_request_form"]["no_of_vis"].value;
+		        console.log(sliderdata);
 		          $.ajax({
 		            type: 'POST',
-		            url: 'http://localhost/appon/make_request.php',
+		            //url: 'http://localhost/appon/make_request.php?email='+email,
+		            url: 'https://appon.000webhostapp.com/request.php?email='+email+'&no_of_vis='+sliderdata,
 		            cache: false,
 		            data: $('form').serialize(),
 		            success: function (response) {
 		            	console.log(response);
 		            	if (response=="done") {
 		            		alert('Request Sent!');
-		              		location.href = "citizen_requested.html";
+		              		window.location.href = "citizen_requested.html?email="+email;
 		            	}
 		            	
 		              
@@ -131,6 +147,10 @@
 		          });		
 
 		        });
+
+				 $(document).ready(function() {
+    				$('select').material_select();
+  				});
 	</script>        	
 	</body>
 </html>
