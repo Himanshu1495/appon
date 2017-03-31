@@ -6,7 +6,7 @@ $email = $_GET['email'];
 $reason = $_POST['reason'];
 $agenda = $_POST['agenda'];
 $location = $_POST['location'];
-$no_of_vis = $_POST['no_of_vis'];
+$no_of_vis = $_GET['no_of_vis'];
 
 $location_check = mysqli_query($connect,"SELECT id FROM minister_db WHERE location='$location'");
 if (mysqli_affected_rows($connect)==1) {
