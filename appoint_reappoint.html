@@ -1,0 +1,87 @@
+<html>
+<head>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+		
+		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	</head>
+<body>
+	<form name="appoint_reappoint">
+		<input type="button" value="Appointment" id="appoint" name="appoint"><br>
+		<input type="button" value="Re-Appointment" id="reappoint" name="reappoint"><br>
+	</form>
+	<script type="text/javascript">
+				$('#appoint').click(function () {		
+				function getQueryVariable(variable) {
+				  var query = window.location.search.substring(1);
+				  var vars = query.split("&");
+				  for (var i=0;i<vars.length;i++) {
+				    var pair = vars[i].split("=");
+				    if (pair[0] == variable) {
+				      return pair[1];
+				    }
+				  } 
+				  alert('Query Variable ' + variable + ' not found');
+				}
+		        		        
+		        var email = getQueryVariable("email");
+		          $.ajax({
+		            type: 'post',
+		            url: 'http://localhost/appon/appoint_reappoint.php?email='+email+"&appoint=1",
+		            //url: 'https://appon.000webhostapp.com/appoint_reappoint.php?email='+email,
+		            cache: false,
+		            success: function (response) {
+		            	console.log(response);
+		            	if (response=="appoint") {
+		              		window.location.href = "appointment_request.html?email="+email;
+		            	}
+		            	if (response=="already") {
+		              		alert('You already have an appointment!');
+		            	}	
+		            	
+		              
+		            }
+		          });		
+
+		        });
+			$('#reappoint').click(function () {		
+				function getQueryVariable(variable) {
+				  var query = window.location.search.substring(1);
+				  var vars = query.split("&");
+				  for (var i=0;i<vars.length;i++) {
+				    var pair = vars[i].split("=");
+				    if (pair[0] == variable) {
+				      return pair[1];
+				    }
+				  } 
+				  alert('Query Variable ' + variable + ' not found');
+				}
+		        
+		        
+		        var email = getQueryVariable("email");
+		          $.ajax({
+		            type: 'post',
+		            url: 'http://localhost/appon/appoint_reappoint.php?email='+email,
+		            //url: 'https://appon.000webhostapp.com/appoint_reappoint.php?email='+email,
+		            cache: false,
+		            data: {appoint : 2},
+		            success: function (response) {
+		            	console.log(response);
+		            	if (response=="resolved") {
+		              		alert('Your issue has already been resolved, kindly take another appointment!');
+		            	}
+		            	if (response=="reappoint") {
+		            		window.location.href = "reappoint.html?email="+email;
+		            	}
+		              
+		            }
+		          });		
+
+		        });
+		</script>        
+
+</body>
+</html>
