@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2017 at 04:42 PM
+-- Generation Time: Apr 01, 2017 at 11:57 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -49,18 +49,38 @@ INSERT INTO `ministers` (`id`, `name`, `email`, `depatrtment`, `location`, `leve
 (2, 'Chintan Popat', 'chintan.popat@gmai.com', 'Traffic', 'Mumbai', 1, ' ', 0, 0, 0, 0),
 (3, 'Karan Botadra', 'karan.botadra@gmai.com', 'Road Management', 'Mumbai', 2, ' ', 0, 0, 0, 0),
 (4, 'Himanshu Nachne', 'himanshi.n@gmail.com', 'Traffic', 'Mumbai', 2, ' ', 0, 0, 0, 0),
+(5, 'Manthan Mehta', 'manthan.meh@gmail.com', 'Road Manangement', 'Mumbai', 0, '', 0, 0, 0, 0),
+(6, 'Ronak Karelia', 'ronak.karelia@gmail.com', 'Traffic', 'Mumbai', 0, '', 0, 0, 0, 0),
 (7, 'Jackson Pais', 'jackson.p@gmai.com', 'Road Management', 'Chennai', 1, ' ', 0, 0, 0, 0),
 (8, 'Joel Phillip', 'joel.phill@gmai.com', 'Traffic', 'Chennai', 1, ' ', 0, 0, 0, 0),
 (9, 'Aditya Pillankar', 'adi.p@gmai.com', 'Road Management', 'Chennai', 2, ' ', 0, 0, 0, 0),
 (10, 'Sanket Shah', 'sanket.shah@gmail.com', 'Traffic', 'Chennai', 2, ' ', 0, 0, 0, 0),
+(11, 'Jay Mehta', 'jay.meh@gmail.com', 'Road Manangement', 'Chennai', 0, '', 0, 0, 0, 0),
+(12, 'Manan Shah', 'manan.shah@gmail.com', 'Traffic', 'Chennai', 0, '', 0, 0, 0, 0),
 (13, 'Het Shah', 'het.shah@gmai.com', 'Road Management', 'Bhopal', 1, ' ', 0, 0, 0, 0),
 (14, 'Shreyans Doshi', 'shreyansdoshi@gmai.com', 'Traffic', 'Bhopal', 1, ' ', 0, 0, 0, 0),
 (15, 'Manan Sheth', 'manan.sheth@gmai.com', 'Road Management', 'Bhopal', 2, ' ', 0, 0, 0, 0),
 (16, 'Kartik Rao', 'kartik.rao@gmail.com', 'Traffic', 'Bhopal', 2, ' ', 0, 0, 0, 0),
+(17, 'Parth Shah', 'parth.shah@gmail.com', 'Road Manangement', 'Bhopal', 0, '', 0, 0, 0, 0),
+(18, 'Dharmil Shah', 'dharmil.shah@gmail.com', 'Traffic', 'Bhopal', 0, '', 0, 0, 0, 0),
 (19, 'Vats Patel', 'vats.patel@gmai.com', 'Road Management', 'Jaipur', 1, ' ', 0, 0, 0, 0),
 (20, 'Yash Maniar', 'yash.mani@gmai.com', 'Traffic', 'Jaipur', 1, ' ', 0, 0, 0, 0),
 (21, 'Karan Panchal', 'karan.panchal@gmai.com', 'Road Management', 'Jaipur', 2, ' ', 0, 0, 0, 0),
-(22, 'prinkesh Shah', 'prinkesh.shah@gmail.com', 'Traffic', 'Jaipur', 2, ' ', 0, 0, 0, 0);
+(22, 'prinkesh Shah', 'prinkesh.shah@gmail.com', 'Traffic', 'Jaipur', 2, ' ', 0, 0, 0, 0),
+(23, 'Bhumik Thakker', 'bhumik.thakker@gmail.com', 'Road Manangement', 'Jaipur', 0, '', 0, 0, 0, 0),
+(24, 'Aayush Shah', 'aayush.shah@gmail.com', 'Traffic', 'Jaipur', 0, '', 0, 0, 0, 0),
+(25, 'Raj Chag', 'raj.chag@gmail.com', 'Road Manangement', 'Kolkata', 1, '', 0, 0, 0, 0),
+(26, 'Jainam Gala', 'jainam.gala@gmail.com', 'Traffic', 'Kolkata', 1, '', 0, 0, 0, 0),
+(27, 'Karan Malpani', 'karan.malpani@gmail.com', 'Road Manangement', 'Kolkata', 2, '', 0, 0, 0, 0),
+(28, 'Shivank Dhanuka', 'shivank.dhanuka@gmail.com', 'Traffic', 'Kolkata', 2, '', 0, 0, 0, 0),
+(29, 'Laskshya Sharma', 'lakshya.sharma@gmail.com', 'Road Manangement', 'Kolkata', 0, '', 0, 0, 0, 0),
+(30, 'umesh kriplani', 'umesh.kriplani@gmail.com', 'Traffic', 'Kolkata', 0, '', 0, 0, 0, 0),
+(31, 'Bhavya Doshi', 'bhavya.doshi@gmail.com', 'Road Manangement', 'Haryana', 1, '', 0, 0, 0, 0),
+(32, 'Jay Doshi', 'jay.doshi@gmail.com', 'Traffic', 'Haryana', 1, '', 0, 0, 0, 0),
+(33, 'Ankit Kothari', 'ankit.kothari@gmail.com', 'Road Manangement', 'Haryana', 2, '', 0, 0, 0, 0),
+(34, 'Mihir Masalia', 'mihir.masalia@gmail.com', 'Traffic', 'Haryana', 2, '', 0, 0, 0, 0),
+(35, 'Amit Shah', 'amit.shah@gmail.com', 'Traffic', 'Haryana', 0, '', 0, 0, 0, 0),
+(36, 'Sagar Shah', 'sagar.shah@gmail.com', 'Traffic', 'Haryana', 0, '', 0, 0, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -80,7 +100,7 @@ ALTER TABLE `ministers`
 -- AUTO_INCREMENT for table `ministers`
 --
 ALTER TABLE `ministers`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
