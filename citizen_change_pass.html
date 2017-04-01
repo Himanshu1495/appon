@@ -18,71 +18,70 @@
 		 
 	
 	<body class="grey lighten-2">
-		<form name="citizen_login_form">
+		<form name="citi_pass_change">
 			<div class="container" id="cardpanel">
 			    <div class="card-panel white">
 					<h3 class="center">Citizen login</h3>
 				    <div class="row">
 						<div class="input-field col s12">
-							<input id="uemail" type="email" name ="uemail" class="validate">
-							<label for="username">Email</label>
-						</div>
-						<div class="input-field col s12">
 						    <input id="pass" type="password" name="pass" class="validate">
-						    <label for="password">Password</label>
+						    <label for="password">New Password</label>
 						</div>
 
-
-						<div class="col s7 "> <br>
-							<h5><a href="citizen_signup.html" class="black-text">Register Here</a></h5>
-						<br>
+						<div class="input-field col s12">
+						    <input id="confpass" type="password" name="confpass" class="validate">
+						    <label for="password">Re-enter Password</label>
+						</div>
 
 						</div>
 						
 						<div class="col s12"> 
-                      <button class="btn waves-effect waves-light black" type="submit" value="Register Now"/>Login
+                      <button class="btn waves-effect waves-light black" type="submit" value="Change"/>Change
                         <i class="material-icons right">send</i>
                       </button>					  
-                      <a href="citizen_forgot.html">Forgot Password</a>
                     </div>
 			        </div>
 			    </div>
 			</div>
 		</form>
 		<script type="text/javascript">
-				$('form').on('submit', function (e) {		
+				$('form').on('submit', function (e) {	
+				 function getQueryVariable(variable) {
+          			var query = window.location.search.substring(1);
+          			var vars = query.split("&");
+          			for (var i=0;i<vars.length;i++) {
+            			var pair = vars[i].split("=");
+            			if (pair[0] == variable) {
+              			return pair[1];
+            			}
+          			} 
+          			alert('Query Variable ' + variable + ' not found');
+        		}	
 		        e.preventDefault();		
-		        var x = document.forms["citizen_login_form"]["uemail"].value;
-          		if (x == "") {
-              		alert("Email required!");
-              		return false;
-          		}
-          		var x = document.forms["citizen_login_form"]["pass"].value;
+		        var x = document.forms["citi_pass_change"]["pass"].value;
           		if (x == "") {
               		alert("Password required!");
               		return false;
           		}
+          		var x = document.forms["citi_pass_change"]["pass"].value;
+          		var y = document.forms["citi_pass_change"]["confpass"].value;
+          		if (x == y) {
+              		alert("Passwords do not match!");
+              		return false;
+              	var email = getQueryVariable("email");	
+          		}
 		          $.ajax({
 		            type: 'post',
 		            //url: 'http://localhost/appon/citizen_login.php',
-		            url: 'https://appon.000webhostapp.com/citizen_login.php',
+		            url: 'https://appon.000webhostapp.com/citizen_password_change.php?email='+email,
 		            cache: false,
 		            data: $('form').serialize(),
 		            success: function (response) {
 		            	console.log(response);
 		            	if (response=="done") {
 		            		//alert('Logging in!');
-		              		location.href = "appoint_reappoint.html?email="+document.forms["citizen_login_form"]["uemail"].value;
-		            	}
-		            	if (response=="otp") {
-		            		alert('OTP not verified!');
-		            		location.href = "verify.html";
-		            	}
-		            	if (response=="invalid") {
-		            		alert('Invalid email or password!');
-		            		document.forms["citizen_login_form"]["pass"].value = "";
-		            	}	
-		              
+		              		location.href = "citizen_login.html",
+		            	}  
 		            }
 		          });		
 		        });

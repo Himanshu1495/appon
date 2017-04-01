@@ -18,32 +18,26 @@
 		 
 	
 	<body class="grey lighten-2">
-		<form name="citizen_login_form">
+		<form name="forgot_form">
 			<div class="container" id="cardpanel">
 			    <div class="card-panel white">
-					<h3 class="center">Citizen login</h3>
+					<h3 class="center">Forgot Password</h3>
 				    <div class="row">
 						<div class="input-field col s12">
 							<input id="uemail" type="email" name ="uemail" class="validate">
 							<label for="username">Email</label>
 						</div>
-						<div class="input-field col s12">
-						    <input id="pass" type="password" name="pass" class="validate">
-						    <label for="password">Password</label>
-						</div>
 
 
-						<div class="col s7 "> <br>
-							<h5><a href="citizen_signup.html" class="black-text">Register Here</a></h5>
-						<br>
+						
 
 						</div>
 						
 						<div class="col s12"> 
-                      <button class="btn waves-effect waves-light black" type="submit" value="Register Now"/>Login
+                      <button class="btn waves-effect waves-light black" type="submit" value="Register Now"/>Submit
                         <i class="material-icons right">send</i>
                       </button>					  
-                      <a href="citizen_forgot.html">Forgot Password</a>
+                      
                     </div>
 			        </div>
 			    </div>
@@ -52,35 +46,26 @@
 		<script type="text/javascript">
 				$('form').on('submit', function (e) {		
 		        e.preventDefault();		
-		        var x = document.forms["citizen_login_form"]["uemail"].value;
+		        var x = document.forms["forgot_form"]["uemail"].value;
           		if (x == "") {
               		alert("Email required!");
               		return false;
           		}
-          		var x = document.forms["citizen_login_form"]["pass"].value;
-          		if (x == "") {
-              		alert("Password required!");
-              		return false;
-          		}
-		          $.ajax({
+          	      $.ajax({
 		            type: 'post',
 		            //url: 'http://localhost/appon/citizen_login.php',
-		            url: 'https://appon.000webhostapp.com/citizen_login.php',
+		            url: 'https://appon.000webhostapp.com/forgot_password.php?email='+document.forms["forgot_form"]["uemail"].value;,
 		            cache: false,
 		            data: $('form').serialize(),
 		            success: function (response) {
 		            	console.log(response);
 		            	if (response=="done") {
 		            		//alert('Logging in!');
-		              		location.href = "appoint_reappoint.html?email="+document.forms["citizen_login_form"]["uemail"].value;
-		            	}
-		            	if (response=="otp") {
-		            		alert('OTP not verified!');
-		            		location.href = "verify.html";
+		              		location.href = "citizen_change_pass.html?email="+document.forms["forgot_form"]["uemail"].value;
 		            	}
 		            	if (response=="invalid") {
-		            		alert('Invalid email or password!');
-		            		document.forms["citizen_login_form"]["pass"].value = "";
+		            		alert('Email id does not exists in our database');
+		            		
 		            	}	
 		              
 		            }
