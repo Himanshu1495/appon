@@ -43,25 +43,14 @@
 		</div>
 		<script type="text/javascript">
 			$('form').on('submit', function (e) {		
-		        function getQueryVariable(variable) {
-          			var query = window.location.search.substring(1);
-          			var vars = query.split("&");
-          			for (var i=0;i<vars.length;i++) {
-            			var pair = vars[i].split("=");
-            			if (pair[0] == variable) {
-              			return pair[1];
-            			}
-          			} 
-          			alert('Query Variable ' + variable + ' not found');
-        		}
 		        e.preventDefault();		
-		        var email = getQueryVariable("email");
+		        var email = localStorage.getItem("email");
 		        var url = "https://appon.000webhostapp.com/check_accept.php?email="+email;
 		        $.getJSON(url, function(result){
 		        	$.each(result, function(i,field){
 		        		var check = field.there;
 		        		if (check==0) {
-		        			location.href = "citizen_requested.html?email"+email;
+		        			location.href = "citizen_requested.html";
 		        		}
 		        		else{
 		        			var content = `
