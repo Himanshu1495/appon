@@ -49,12 +49,11 @@
 		        var x = document.forms["forgot_form"]["uemail"].value;
           		if (x == "") {
               		alert("Email required!");
-              		return false;
           		}
           	      $.ajax({
 		            type: 'post',
 		            //url: 'http://localhost/appon/citizen_login.php',
-		            url: 'https://appon.000webhostapp.com/forgot_password.php?email='+document.forms["forgot_form"]["uemail"].value;,
+		            url: 'https://appon.000webhostapp.com/forgot_password.php?email='+document.forms["forgot_form"]["uemail"].value,
 		            cache: false,
 		            data: $('form').serialize(),
 		            success: function (response) {
