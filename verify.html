@@ -60,7 +60,6 @@
             alert("Invalid OTP!");
             return false;
           }
-          console.log("inside");
           $.ajax({
             type: 'post',
             url: 'https://appon.000webhostapp.com/otp_verify.php',
@@ -70,7 +69,7 @@
               console.log(response);
               if (response=="done") {
                 alert('Verified');
-                window.location.replace = "citizen_login.html";
+                location.href = "citizen_login.html";
               }
               else if(response=="invalid"){
                 alert("Please enter correct otp");

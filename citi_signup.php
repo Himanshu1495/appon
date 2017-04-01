@@ -28,7 +28,7 @@ if ($email_flag == false && $contact_flag == false) {
 }
 if ($email_flag == false && $contact_flag == false){
 
-$from = 'apponucoe@gmail.com';
+$from = 'no-reply@appon.host22.com';
 $to = $email;
 $subject = 'One time password for login : AppON';
 while ($otp_flag==false) {
@@ -56,7 +56,7 @@ $validZipcode = true;
 $contact = validate($contact);
 $validContact = true;
 $password = password_hash($password,PASSWORD_DEFAULT);
-
+	
 
 
 if ($validZipcode == true && $validContact == true) {

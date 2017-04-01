@@ -16,9 +16,19 @@
 
 	</head>
 	<body>
-		<h2>Your Appointment is yet to be confirmed.</h2>
-		<input type="button" value="Refresh">
+		<form name="pending">
+		<div class="container" id="cardpanel"><br><br>
+		        	<div class="card-panel white thin" id="card">
+						<center><h4>Appointment Status</h4></center><br><br><br><br>
+						<center><h5  class="thin">Your Appointment is yet to be approved.</h5></center><br>
+					</div>
+					 <button  type="submit" value="Refresh" class="btn waves-effect waves-light black">Refresh
+            <i class="material-icons right">send</i>
+          </button>           
 
+		      </div>
+		</form>
+		
 			<script type="text/javascript">
 				$('form').on('submit', function (e) {		
 		        function getQueryVariable(variable) {
@@ -34,27 +44,40 @@
         		}
 		        e.preventDefault();		
 		        var email = getQueryVariable("email");
-		          $.ajax({
-		            type: 'POST',
-		            //url: 'http://localhost/appon/mini_login.php',
-		            url: 'https://appon.000webhostapp.com/check_accept.php?email='+email,
-		            cache: false,
-		            data: $('form').serialize(),
-		            //beforeSend: function(){alert("Logging in");},
-		            success: function (response) {
-		            	console.log(response);
-		            	if (response=="done") {
-		            		//alert('Logging in!');
-		              		window.location.href = "status_pending.html";
-		            	}
-		            	if (response=="no") {
-		               	window.location.href = "citizen_requested.html?email="+email;
-		               	}	
-		            	
-		              
-		            }
-		          });		
+		        var url = "https://appon.000webhostapp.com/check_accept.php?email="+email;
+		        var content;
+		        $.getJSON(url, function(result){
+		        	console.log(result);
+		        		var check = result.there;
+		        		if (check==0) {
+		        			location.href = "citizen_requested.html?email"+email;
+		        		}
+		        		else{
+		        			content = `
+		        				<br><br>
+		        				<div class="card-panel white">
+								<center><img src="img/logo.png" id="logosize"></center>
+								<br><br>
+								<center><h5>Your Appointment is approved.</h5></center><br>
+								<div class="flow-text">
+									Person to meet: <a href="profile.html"><div class="chip">
+											<img src="img/prsn.jpg" alt="Contact Person">`+result.name+`
+										  </div></a> <br>
+								Location:`+result.address+`<br>
+								Date & Time: `+result.date+` & `+result.time+`<br>	
+							</div>
+							</div>
+
+		        			`;
+		        			console.log(content);
+		    				document.getElementById('cardpanel').innerHTML = content;
+		        		}
+		        });
+		        //$('#cardpanel').remove();
+		          		
 		        });
 		</script>        
+		<a href="meeting_verify.html">Click here to enter OTP</a>
+		
 	</body>
 </html>

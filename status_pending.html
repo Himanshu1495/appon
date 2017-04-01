@@ -13,21 +13,27 @@
 			  
 			 
 		</script>
-		
 		<style>
+			#logosize{
+				height:13%;
+				width:30%;
+			}
 			#cardpanel{
 				padding-top:5%;
 			}
 			
 		</style>
 	</head>
-	<body class="light-blue ">
+	<body class="grey lighten-2">
 		<div class="container" id="cardpanel"><br><br>
 		        	<div class="card-panel white">
-						<center><h4>Appointment Status</h4></center><br><br><br><br>
+						<center><img src="img/logo.png" id="logosize"></center>
+						<br><br>
 						<center><h5>Your Appointment is approved.</h5></center><br>
 						<div class="flow-text">
-							Person to meet: Name of person with link to profile<br>
+							Person to meet: <a href="profile.html"><div class="chip">
+											<img src="img/prsn.jpg" alt="Contact Person">Jane Doe
+										  </div></a> <br>
 							Location:Address<br>
 							Date & Time: Day Time<br>	
 						</div>
@@ -35,5 +41,54 @@
 		      </div>
 		    </div>
 		</div>
+		<script type="text/javascript">
+			$('form').on('submit', function (e) {		
+		        function getQueryVariable(variable) {
+          			var query = window.location.search.substring(1);
+          			var vars = query.split("&");
+          			for (var i=0;i<vars.length;i++) {
+            			var pair = vars[i].split("=");
+            			if (pair[0] == variable) {
+              			return pair[1];
+            			}
+          			} 
+          			alert('Query Variable ' + variable + ' not found');
+        		}
+		        e.preventDefault();		
+		        var email = getQueryVariable("email");
+		        var url = "https://appon.000webhostapp.com/check_accept.php?email="+email;
+		        $.getJSON(url, function(result){
+		        	$.each(result, function(i,field){
+		        		var check = field.there;
+		        		if (check==0) {
+		        			location.href = "citizen_requested.html?email"+email;
+		        		}
+		        		else{
+		        			var content = `
+		        				<br><br>
+		        				<div class="card-panel white">
+								<center><img src="img/logo.png" id="logosize"></center>
+								<br><br>
+								<center><h5>Your Appointment is approved.</h5></center><br>
+								<div class="flow-text">
+									Person to meet: <a href="profile.html"><div class="chip">
+											<img src="img/prsn.jpg" alt="Contact Person">`+field.name+`
+										  </div></a> <br>
+								Location:`+field.address+`<br>
+								Date & Time: `+field.date+` & `+field.time+`<br>	
+							</div>
+							</div>
+		     				 </div>
+		    				</div>
+
+		        			`;
+		        			$('#cardpanel').remove();
+		        			$('#cardpanel').val(content);
+
+		        		}
+		        	});
+		        });  		
+		        });
+		</script>
 	</body>
 </html>

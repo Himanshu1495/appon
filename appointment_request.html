@@ -14,7 +14,7 @@
 			
 		</style>
 	</head>
-	<body class="light-blue ">
+	<body class="grey lighten-2">
 		<form name="citizen_request_form">
 		<div class="container" id="cardpanel"><br><br>
 		        	<div class="card-panel white">
@@ -23,12 +23,12 @@
 								<div class="input-field col s12">
 									<select name="reason" id="reason">
 										<option value="" disabled selected>Choose the reason:</option>
-										<option value="1">Road Management</option>
-										<option value="2">Traffic</option>
-										<option value="3">Toll</option>
-										<option value="4">Overcharge penalites</option>
-										<option value="5">Highway Safety</option>
-										<option value="6">Overload Vehicles</option>
+										<option value="road management">Road Management</option>
+										<option value="traffic">Traffic</option>
+										<option value="toll">Toll</option>
+										<option value="overcharge penalties">Overcharge penalites</option>
+										<option value="highway safety">Highway Safety</option>
+										<option value="overload vehicles">Overload Vehicles</option>
 									</select>
 										<label>Reason</label>
 								</div>
@@ -139,7 +139,7 @@
 		            	console.log(response);
 		            	if (response=="done") {
 		            		alert('Request Sent!');
-		              		window.location.href = "citizen_requested.html?email="+email;
+		              		location.href = "citizen_requested.html?email="+email;
 		            	}
 		            	
 		              

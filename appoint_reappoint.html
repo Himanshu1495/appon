@@ -7,13 +7,7 @@
 		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<script>
-			$(document).ready(function(){
-				$('.modal').modal();
-				$('#modal1').modal('open');
-			});
-			
-		</script>
+		
 		
 	</head>
 <body class="grey lighten-2">
@@ -24,11 +18,10 @@
 								<p class="flow-text">Do not click on Appointment if you already have an appointment</p>
 							</div>
 							<div class="modal-footer">
-								<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+								<button class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</button>
 							</div>
 						</div>
-				<!--Modal End-->
-	<form name="appoint_reappoint">				
+				<!--Modal End-->				
 	<div class="container" id="cardpanel">
 			<div class="row">
       <div class="col s12 ">
@@ -37,21 +30,18 @@
 					<br><br><br>
 			<div class="row">
 				<div class="col s10 offset-s1 center">
-					<button class="btn waves-effect waves-light bold black" type="submit" id="appoint" name="appoint"><span class="Bold"> &nbsp; Appointment &nbsp; </span>
+					<button class="btn waves-effect waves-light bold black" id="appoint" ><span class="Bold"> &nbsp; Appointment &nbsp; </span>
 						<i class="material-icons right">send</i>
 					</button>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col s10 offset-s1 center">
-					<button class="btn waves-effect waves-light black" id="reappoint" type="submit" name="reappoint">ReAppointment
+					<button class="btn waves-effect waves-light black" id="reappoint">ReAppointment
 						<i class="material-icons right">send</i>
 					</button>
 				</div>
 			</div>
-	
-		
-	</form>
 	<script type="text/javascript">
 				$('#appoint').click(function () {		
 				function getQueryVariable(variable) {
@@ -69,13 +59,13 @@
 		        var email = getQueryVariable("email");
 		          $.ajax({
 		            type: 'post',
-		            url: 'http://localhost/appon/appoint_reappoint.php?email='+email+"&appoint=1",
-		            //url: 'https://appon.000webhostapp.com/appoint_reappoint.php?email='+email,
+		            //url: 'http://localhost/appon/appoint_reappoint.php?email='+email+"&appoint=1",
+		            url: 'https://appon.000webhostapp.com/appoint_reappoint.php?email='+email+'&appoint=1',
 		            cache: false,
 		            success: function (response) {
 		            	console.log(response);
 		            	if (response=="appoint") {
-		              		window.location.href = "appointment_request.html?email="+email;
+		              		location.href = "appointment_request.html?email="+email;
 		            	}
 		            	if (response=="already") {
 		              		alert('You already have an appointment!');
@@ -84,6 +74,7 @@
 		              
 		            }
 		          });		
+
 
 		        });
 			$('#reappoint').click(function () {		
