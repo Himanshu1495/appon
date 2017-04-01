@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2017 at 11:40 AM
+-- Generation Time: Apr 01, 2017 at 11:57 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -68,7 +68,19 @@ INSERT INTO `ministers` (`id`, `name`, `email`, `depatrtment`, `location`, `leve
 (21, 'Karan Panchal', 'karan.panchal@gmai.com', 'Road Management', 'Jaipur', 2, ' ', 0, 0, 0, 0),
 (22, 'prinkesh Shah', 'prinkesh.shah@gmail.com', 'Traffic', 'Jaipur', 2, ' ', 0, 0, 0, 0),
 (23, 'Bhumik Thakker', 'bhumik.thakker@gmail.com', 'Road Manangement', 'Jaipur', 0, '', 0, 0, 0, 0),
-(24, 'Aayush Shah', 'aayush.shah@gmail.com', 'Traffic', 'Jaipur', 0, '', 0, 0, 0, 0);
+(24, 'Aayush Shah', 'aayush.shah@gmail.com', 'Traffic', 'Jaipur', 0, '', 0, 0, 0, 0),
+(25, 'Raj Chag', 'raj.chag@gmail.com', 'Road Manangement', 'Kolkata', 1, '', 0, 0, 0, 0),
+(26, 'Jainam Gala', 'jainam.gala@gmail.com', 'Traffic', 'Kolkata', 1, '', 0, 0, 0, 0),
+(27, 'Karan Malpani', 'karan.malpani@gmail.com', 'Road Manangement', 'Kolkata', 2, '', 0, 0, 0, 0),
+(28, 'Shivank Dhanuka', 'shivank.dhanuka@gmail.com', 'Traffic', 'Kolkata', 2, '', 0, 0, 0, 0),
+(29, 'Laskshya Sharma', 'lakshya.sharma@gmail.com', 'Road Manangement', 'Kolkata', 0, '', 0, 0, 0, 0),
+(30, 'umesh kriplani', 'umesh.kriplani@gmail.com', 'Traffic', 'Kolkata', 0, '', 0, 0, 0, 0),
+(31, 'Bhavya Doshi', 'bhavya.doshi@gmail.com', 'Road Manangement', 'Haryana', 1, '', 0, 0, 0, 0),
+(32, 'Jay Doshi', 'jay.doshi@gmail.com', 'Traffic', 'Haryana', 1, '', 0, 0, 0, 0),
+(33, 'Ankit Kothari', 'ankit.kothari@gmail.com', 'Road Manangement', 'Haryana', 2, '', 0, 0, 0, 0),
+(34, 'Mihir Masalia', 'mihir.masalia@gmail.com', 'Traffic', 'Haryana', 2, '', 0, 0, 0, 0),
+(35, 'Amit Shah', 'amit.shah@gmail.com', 'Traffic', 'Haryana', 0, '', 0, 0, 0, 0),
+(36, 'Sagar Shah', 'sagar.shah@gmail.com', 'Traffic', 'Haryana', 0, '', 0, 0, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -88,7 +100,7 @@ ALTER TABLE `ministers`
 -- AUTO_INCREMENT for table `ministers`
 --
 ALTER TABLE `ministers`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
