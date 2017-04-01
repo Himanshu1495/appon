@@ -1,18 +1,18 @@
 <html>
-	<head>
-		 <!--<script src="http://code.jquery.com/jquery-1.9.1.js"></script>-->
-		 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<style>
-			#cardpanel{
-				padding-top:30%;
-			}
-			
-		</style>
-		</head>
+  <head>
+     <!--<script src="http://code.jquery.com/jquery-1.9.1.js"></script>-->
+     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      #cardpanel{
+        padding-top:30%;
+      }
+      
+    </style>
+    </head>
     <body class="grey lighten-2 center">
      <form name="verify">
       <div class="container" id="cardpanel">
@@ -26,34 +26,39 @@
 
             </div>
             
-            <div class="col s12 center"> 
-                         <button  type="submit" value="Verify" class="btn waves-effect waves-light black">Verify
-                        <i class="material-icons right">send</i>
-                        </button>           
-                      </div>
-              </div>
-          </div>
+            <div class="row">
+        <div class="col s10 offset-s1 center">
+          <button class="btn waves-effect waves-light bold black" type="submit" name="action"><span class="Bold"> &nbsp;&nbsp;&nbsp; Verify &nbsp;&nbsp;&nbsp; </span>
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s10 offset-s1 center">
+          <button class="btn waves-effect waves-light black" type="button" name="action">Resend OTP
+            <i class="material-icons right">resend</i>
+          </button>
+        </div>
       </div>
     </form>
-	<!-- <body class="grey lighten-2 center">
-	<h1>OTP</h1>
-		<div class="container" id="cardpanel">
-			<div class="row">
-		      	<div class="col s12 m5 center">
-		        	<div class="card-panel white">
-			          	 <form name="verify">
-      					 <input type="text" name="otp"/><br>
-     					 <button  type="submit" value="Verify" class="btn waves-effect waves-light black">Verify</button>
-     					 </form>
-    				</div>
-		      </div>
-		    </div>
-		</div> -->
+  <!-- <body class="grey lighten-2 center">
+  <h1>OTP</h1>
+    <div class="container" id="cardpanel">
+      <div class="row">
+            <div class="col s12 m5 center">
+              <div class="card-panel white">
+                   <form name="verify">
+                 <input type="text" name="otp"/><br>
+               <button  type="submit" value="Verify" class="btn waves-effect waves-light black">Verify</button>
+               </form>
+            </div>
+          </div>
+        </div>
+    </div> -->
 
-			<script>
+      <script>
         
         $('form').on('submit', function (e) {
-
           e.preventDefault();
           var x = document.forms["verify"]["otp"].value;
           if (!x.match(/^\d{4}$/)) {
@@ -80,9 +85,50 @@
               }
             }
           });
-
         });
-
     </script>
-		</body>
-		</html>
+    <script>
+        
+        $('form').on('button', function (e) {
+           function getQueryVariable(variable) {
+                var query = window.location.search.substring(1);
+                var vars = query.split("&");
+                for (var i=0;i<vars.length;i++) {
+                  var pair = vars[i].split("=");
+                  if (pair[0] == variable) {
+                    return pair[1];
+                  }
+                } 
+                alert('Query Variable ' + variable + ' not found');
+            }
+          e.preventDefault();
+          //var x = document.forms["verify"]["otp"].value;
+          // if (!x.match(/^\d{4}$/)) {
+          //   alert("Invalid OTP!");
+          //   return false;
+          // }
+          var email = getQueryVariable("email");
+          console.log("inside");
+          $.ajax({
+            type: 'post',
+            url: 'https://appon.000webhostapp.com/resend.php?email='+email,
+            cache: false,
+            data: $('form').serialize(),
+            success: function (response) {
+              console.log(response);
+              if (response=="done") {
+                alert('OTP sent to Email Id');
+                window.location.replace = "verify.html";
+              }
+              // else if(response=="invalid"){
+              //   alert("Please click again to resend");
+              // }
+              else{
+                alert("we are unable to connect to our servers. Please try again after sometime");
+              }
+            }
+          });
+        });
+    </script>
+    </body>
+    </html>
