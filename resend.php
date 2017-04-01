@@ -20,6 +20,7 @@ $body = 'Your one time password is : '.$otp."\n".
 	'Your mates at AppON';
 $headers = 'From: '.$from. "\r\n" .
    'Reply-To: '.$from. "\r\n";
-   mail($to, $subject, $body, $headers);		
-		echo "done";
+   
+mail($to, $subject, $body, $headers);		
+echo "done";
 ?>
