@@ -1,35 +1,67 @@
 <html>
-	<head>
-		 <!--<script src="http://code.jquery.com/jquery-1.9.1.js"></script>-->
-		 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <head>
+    <!--<script src="http://code.jquery.com/jquery-1.9.1.js"></script>-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
-		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    	  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <style>
+      #cardpanel{
+        padding-top:40%;
+      }
+    </style>  
 
-		<style>
-			#cardpanel{
-				padding-top:20%;
-			}
-			
-		</style>
-		
-    </head>  
-	<body class="grey lighten-2">
-		<form name="citizen_login_form">
-			<div class="container" id="cardpanel">
-			    <div class="card-panel white">
-					<h4 class="center">Approval Pending</h4>
-					<br><br>
-				    <div class="row">
-						<h3 class="center-align">123456</h3>
-						<center><button class="btn waves-effect waves-light black center-align" type="submit" value="Register Now"/>Generate
-							<i class="material-icons">vpn_key</i>
-						</button></center>	
-			        </div>
-			    </div>
-			</div>
-		</form>	
-	</body>
+</head>
+<body class="grey lighten-2">
+  <div class="container" id="cardpanel">
+    <div class="row">
+      <br><br>
+      <div class="col s10 offset-s1">
+        <div class="card-panel white">
+          <form name="meeting_otp">
+              <h2 class="center">Meeting OTP</h2>
+                <br><br><br>
+                 
+                  <div class="row">
+                    <div class="col s9 offset-s1"> 
+                    <center><button class="btn waves-effect waves-light black center-align" type="submit" value="Register Now"/>Generate
+                    <i class="material-icons">vpn_key</i>
+                  </button></center>  
+                    </div>
+                  </div>
+                </div>   
+          </form>
+    <script>
+        function getQueryVariable(variable) {
+          var query = window.location.search.substring(1);
+          var vars = query.split("&");
+          for (var i=0;i<vars.length;i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) {
+              return pair[1];
+            }
+          } 
+          alert('Query Variable ' + variable + ' not found');
+        }
+    
+        var email = getQueryVariable("email");  
+        console.log(email);
+        $('form').on('submit', function (e) {
+          e.preventDefault();
+          $.ajax({
+            type: 'post',
+            url: 'http://localhost/appon/meet_otp.php?email='+email,
+            //url: 'https://appon.000webhostapp.com/citi_signup.php',
+            cache: false,
+            data: $('form').serialize(),
+            success: function (response) {
+              console.log(response);
+              
+            }
+          });
+        });
+    </script>
+  </body>
 </html>
