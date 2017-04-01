@@ -1,0 +1,72 @@
+
+<html>
+	<head>
+		 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+		
+		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<style>
+			#logosize{
+				height:120px;
+				width:120px;
+			}
+		</style>
+	
+	</head>
+	<body class="grey lighten-2">
+		<div class="container grey lighten-2">
+		    <div class="card-panel white">
+				<center><h5>Appointment Feedback</h5></center><br>
+					<center><img src="img/logo.png" id="logosize"></center>
+					 <form name="rating_form">
+					<p>Politeness of officer:</p>
+					<p class="range-field" >
+						<input type="range"  id="politedata" min="1" max="10" value="1" />
+					</p>
+					<p>Understandablity of issue:</p>
+					<p class="range-field">
+						<input type="range" id="understanddata" min="1" max="10" value="1" />
+					</p>
+					<p>Hospitality:</p>
+					<p class="range-field">
+						<input type="range" id="hospitalitydata" min="1" max="10" value="1" />
+					</p>
+					<p>Cleanliness of office(Under Swach Bharat Abhiyan):</p>
+						<p class="range-field">
+						<input type="range" id="cleandata" min="1" max="10" value="1" />
+					</p>
+	     			<button class="btn waves-effect waves-light black white-text" type="submit" name="action">Submit
+						<i class="material-icons right">send</i>
+					</button>
+				</form> 
+				<script type="text/javascript">
+				$('form').on('submit', function (e) {		
+		        e.preventDefault();		
+		        var email = localStorage.getItem("email");
+		        var sliderpolite = document.forms["rating_form"]["politedata"].value;
+		        var sliderclean = document.forms["rating_form"]["cleandata"].value;
+		        var sliderunderstand = document.forms["rating_form"]["understanddata"].value;
+          		var sliderhospitality = document.forms["rating_form"]["hospitalitydata"].value;
+
+          		
+		          $.ajax({
+		            type: 'post',
+		            //url: 'http://localhost/appon/citizen_login.php',
+		            url: 'https://appon.000webhostapp.com/rating.php?email='+email+'&politeness='+sliderpolite+'&understand='+sliderunderstand+'&hospitality='+sliderhospitality+'&cleanliness='+sliderclean,
+		            cache: false,
+		            data: $('form').serialize(),
+		            success: function (response) {
+		            	console.log(response);
+		            	if (response=="done") {
+		            		location.href = "thanks.html";
+		            	}	
+		            }
+		          });		
+		        });
+		</script> 
+			</div>
+		</div>
+	</body>
+</html>
