@@ -1,0 +1,72 @@
+<html>
+	<head>
+		 <!--<script src="http://code.jquery.com/jquery-1.9.1.js"></script>-->
+		 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			#cardpanel{
+				padding-top:30%;
+			}
+			
+		</style>
+		</head>
+    <body class="grey lighten-2 center">
+     <form name="meeting_verify">
+      <div class="container" id="cardpanel">
+          <div class="card-panel white">
+          <h3 class="center">OTP</h3>
+            <div class="row">
+            <div class="input-field col s12">
+               <input type="text" name="otp"/><br>
+            </div>
+
+
+            </div>
+            
+            <div class="col s12 center"> 
+                         <button  type="submit" value="Start Meeting" class="btn waves-effect waves-light black">Start Meeting
+                        <i class="material-icons right">send</i>
+                        </button>           
+                      </div>
+              </div>
+          </div>
+      </div>
+    </form>
+			<script>
+        
+        $('form').on('submit', function (e) {
+
+          e.preventDefault();
+          var x = document.forms["meeting_verify"]["otp"].value;
+          if (!x.match(/^\d{6}$/)) {
+            alert("Invalid OTP!");
+            return false;
+          }
+          $.ajax({
+            type: 'post',
+            url: 'https://appon.000webhostapp.com/meet_verify.php',
+            cache: false,
+            data: $('form').serialize(),
+            success: function (response) {
+              console.log(response);
+              if (response=="done") {
+                alert('Meeting Started');
+                location.href = "rating.html";
+              }
+              else if(response="invalid"){
+                alert('Invalid OTP');
+              }
+              else{
+                alert("We are unable to connect to our servers. Please try again after sometime");
+              }
+            }
+          });
+
+        });
+
+    </script>
+		</body>
+		</html>
